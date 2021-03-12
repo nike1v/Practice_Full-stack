@@ -1,0 +1,24 @@
+.header {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  height: 100px;
+  width: 100%;
+  background-color: aliceblue;
+  margin: 0px;
+}
+
+.logoName {
+  width: 20%;
+  height: 100%;
+  margin-left: 15%;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.logoText {
+  margin: auto 0px auto 25px;
+}
