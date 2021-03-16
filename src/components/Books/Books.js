@@ -1,10 +1,11 @@
 import React from 'react';
+import '../../assets/books.css';
 
 const Books = () => {
   return(
-    <div className="books">
-    1
-    </div>
+    <main className="books">
+      Books
+    </main>
   )
 }
 

@@ -9,12 +9,17 @@ const App = () => {
   return (
     <Router>
       <Layout>
+        <Redirect to="/login" />
         <Redirect to="/books" />
+        
       </Layout>
 
       <Switch>
         <Route path="/books">
           <Books />
+        </Route>
+        <Route path="/login">
+
         </Route>
       </Switch>
     </Router>
