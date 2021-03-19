@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/books.css';
+import './books.css';
 
 const Books = () => {
   return(
