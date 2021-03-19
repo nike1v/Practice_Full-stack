@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  height: 100px;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.logoName {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  margin-left: 15%;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.logoText {
+  margin: auto 0px auto 25px;
+}
+
+.headerNavigation {
+  width: 25%;
+  margin-right: 5%;
+  align-self: center;
+}
+
+.navButton {
+  color: black;
+  margin: 20px;
+  text-decoration: none;
+}
+
+.navButton.cart{
+  border: solid black 2px;
+  border-radius: 15px;
+  padding: 7px 10px 7px 10px;
+  text-align: center;
+  background-color: gainsboro;
+}
+
+.navButton.logOut{
+  border: solid black 2px;
+  border-radius: 15px;
+  padding: 7px 10px 7px 10px;
+  text-align: center;
+  background-color: lightblue;
+}
