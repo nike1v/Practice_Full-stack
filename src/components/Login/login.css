@@ -1,4 +1,49 @@
 .login {
-  width: 100%;
-  margin: 100px 0px 0px 0px;
+  width: 30%;
+  height: 300px;
+  background-color: rgb(235, 235, 235);
+  margin: 150px auto 0px auto;
+  border-radius: 15px;
+}
+
+.loginFormLabel {
+  padding: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+}
+.loginFormLabel .additionalFormText {
+  display: block;
+  font-size: 18px;
+  color:rgba(173, 172, 172, 0.76)
+}
+
+.loginForm {
+  padding: 10px;
+}
+
+.loginForm > * {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+.loginForm > input {
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.error {
+  display: none;
+  width  : 100%;
+  font-size: 16px;
+  color: #900;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.error.active {
+  margin-bottom: 5px;
+  display: block;
 }
