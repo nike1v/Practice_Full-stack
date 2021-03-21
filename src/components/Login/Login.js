@@ -7,7 +7,10 @@ const Login = () => {
 
   const history = useHistory();
   const [errorShow, setErrorShow] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  const [errorPasswordLength, setErrorPasswordLength] = useState('');
+  const [errorPasswordDigits, setErrorPasswordDigits] = useState('');
+  const [errorPasswordLower, setErrorPasswordLower] = useState('');
+  const [errorPasswordUpper, setErrorPasswordUpper] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
 
@@ -16,20 +19,53 @@ const Login = () => {
   const passwordValidationLower = /(?=.*[a-z])/;
   const passwordValidationUpper = /(?=.*[A-Z])/;
   
+  const validPasswordLeght = (password) => {
+    if (password.match(passwordValidationSize)){
+      setErrorPasswordLength('');
+      return true;
+    }else {
+      setErrorPasswordLength('Password must contain 6 or more symbols');
+      setErrorShow('active');
+    }
+  }
+  const validPasswordDigits = (password) => {
+    if (password.match(passwordValidationDigits)) {
+      setErrorPasswordDigits('');
+      return true;
+    } else {
+      setErrorPasswordDigits("Password must contain at least one number");
+      setErrorShow('active');
+    }
+  }
+  const validPasswordLower = (password) => {
+    if(password.match(passwordValidationLower)){
+      setErrorPasswordLower('');
+      return true;
+    } else {
+      setErrorPasswordLower("Password must contain at least one lowecase symbol");
+      setErrorShow('active');
+    }
+  }
+  const validPasswordUpper = (password) => {
+    if(password.match(passwordValidationUpper)) {
+      setErrorPasswordUpper('');
+      return true;
+    } else {
+      setErrorPasswordUpper("Password must contain at least one uppercase symbol");
+      setErrorShow('active');
+    }
+  }
 
   const handlevalid = (event) => {
     event.preventDefault();
-    if (userPassword.match(passwordValidationSize)&userPassword.match(passwordValidationDigits)&userPassword.match(passwordValidationLower)&userPassword.match(passwordValidationUpper)){
-      console.log('pass OK');
+    validPasswordDigits(userPassword);
+    validPasswordLeght(userPassword);
+    validPasswordLower(userPassword);
+    validPasswordUpper(userPassword);
+    if (validPasswordUpper(userPassword) && validPasswordLower(userPassword) && validPasswordLeght(userPassword) && validPasswordDigits(userPassword)){
+      console.log('Pass OK');
       history.push(books);
     }
-    switch (!userPassword.match){
-      case passwordValidationSize:
-        console.log('123');
-    }
-    setErrorPassword('Error in password');
-
-    setErrorShow('active')
   }
 
   const handleEmailChange = ({target}) => {
@@ -51,7 +87,10 @@ const Login = () => {
         <input type='email' placeholder='E-mail' className='formField e-mail' value={userEmail} onChange={handleEmailChange} required />
         <label>Password</label>
         <input type='password' placeholder='Password' value={userPassword} onChange={handlePasswordChange} required />
-        <span className={`error ${errorShow}`}>{errorPassword}</span>
+        <span className={`error ${errorShow}`}>{errorPasswordLength}</span>
+        <span className={`error ${errorShow}`}>{errorPasswordDigits}</span>
+        <span className={`error ${errorShow}`}>{errorPasswordLower}</span>
+        <span className={`error ${errorShow}`}>{errorPasswordUpper}</span>
         <button type='submit'>Log In</button>
       </form>
     </main>
