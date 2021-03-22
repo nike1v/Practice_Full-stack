@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import "./footer.css";
+import { login } from '../../constatnts/routes.js';
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
       <nav className="footerNavigation">
         <NavLink to="/" className="nav support">Support</NavLink>
         <NavLink to="/" className="nav signUp">Sign Up</NavLink>
-        <NavLink to="/" className="nav signIn">Sign In</NavLink>
+        <NavLink to={login} className="nav signIn">Sign In</NavLink>
       </nav>
     </footer>
   )

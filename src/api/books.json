@@ -1,0 +1,84 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "name": "Book1",
+      "authorName": "Author Name",
+      "price": 560,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 2,
+      "name": "Book2",
+      "authorName": "Author Name2",
+      "price": 5602,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 3,
+      "name": "Book3",
+      "authorName": "Author Name3",
+      "price": 5603,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 4,
+      "name": "Book4",
+      "authorName": "Author Name4",
+      "price": 5604,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 5,
+      "name": "Book5",
+      "authorName": "Author Name5",
+      "price": 5605,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 6,
+      "name": "Book6",
+      "authorName": "Author Name6",
+      "price": 5606,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 7,
+      "name": "Book7",
+      "authorName": "Author Name7",
+      "price": 5607,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 8,
+      "name": "Book8",
+      "authorName": "Author Name8",
+      "price": 5608,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 9,
+      "name": "Book9",
+      "authorName": "Author Name9",
+      "price": 5609,
+      "currency": "USD",
+      "currencyMark": "$"
+    },
+    {
+      "id": 10,
+      "name": "Book10",
+      "authorName": "Author Name10",
+      "price": 5160,
+      "currency": "USD",
+      "currencyMark": "$"
+    }
+  ]
+}

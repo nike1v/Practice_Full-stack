@@ -11,9 +11,9 @@ const App = () => {
   return (
     <Router>
       <ErrorBoundary>
-      <Layout>
-        <Routes />
-      </Layout>
+        <Layout>
+          <Routes />
+        </Layout>
       </ErrorBoundary>
     </Router>  
   );
