@@ -1,28 +1,21 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Redirect, Route, Switch,
+  BrowserRouter as Router
 } from "react-router-dom";
-import Books from './Books/Books';
+import './app.css';
+import Routes from './Routes/Routes';
 import Layout from './Layout/Layout';
+import ErrorBoundary from './Errors/error';
 
 const App = () => {
   return (
     <Router>
+      <ErrorBoundary>
       <Layout>
-        <Redirect to="/login" />
-        <Redirect to="/books" />
-        
+        <Routes />
       </Layout>
-
-      <Switch>
-        <Route path="/books">
-          <Books />
-        </Route>
-        <Route path="/login">
-
-        </Route>
-      </Switch>
-    </Router>
+      </ErrorBoundary>
+    </Router>  
   );
 }
 
