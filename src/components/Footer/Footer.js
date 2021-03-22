@@ -10,7 +10,7 @@ const Footer = () => {
         <NavLink to="/" className="nav terms">Terms</NavLink>
       </nav>
       <section className="companyName">
-        <span>GetBooks</span> 2021 GetBooks inc.
+        GetBooks <span>2021 GetBooks inc.</span>
       </section>
       <nav className="footerNavigation">
         <NavLink to="/" className="nav support">Support</NavLink>
