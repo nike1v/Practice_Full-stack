@@ -1,58 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState  } from 'react';
 import { useHistory } from 'react-router-dom';
-import {books} from '../../constatnts/routes.js';
+import {  books } from '../../constatnts/routes.js';
+import { passSize, passDigits, passLower, passUpper } from '../../utils/passwordValidation';
 import './login.css';
+import {  v4  } from 'uuid';
 
 const Login = () => {
 
   const history = useHistory();
-  const [errorShow, setErrorShow] = useState('');
-  const [errorPasswordLength, setErrorPasswordLength] = useState('');
-  const [errorPasswordDigits, setErrorPasswordDigits] = useState('');
-  const [errorPasswordLower, setErrorPasswordLower] = useState('');
-  const [errorPasswordUpper, setErrorPasswordUpper] = useState('');
+  const [errorPassword, setErrorPassword] = useState([]);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
-
-  const passwordValidationSize = /[0-9a-zA-Z]{6,}/;
-  const passwordValidationDigits = /(?=.*[0-9])/;
-  const passwordValidationLower = /(?=.*[a-z])/;
-  const passwordValidationUpper = /(?=.*[A-Z])/;
   
   const validPasswordLeght = (password) => {
-    if (password.match(passwordValidationSize)){
-      setErrorPasswordLength('');
+    if (password.match(passSize)){
       return true;
     }else {
-      setErrorPasswordLength('Password must contain 6 or more symbols');
-      setErrorShow('active');
+      setErrorPassword((prev) => [...prev, 'Password must contain 6 or more symbols']);
+      return false;
     }
   }
   const validPasswordDigits = (password) => {
-    if (password.match(passwordValidationDigits)) {
-      setErrorPasswordDigits('');
+    if (password.match(passDigits)) {
       return true;
     } else {
-      setErrorPasswordDigits("Password must contain at least one number");
-      setErrorShow('active');
+      setErrorPassword((prev) => [...prev, "Password must contain at least one number"]);
+      return false;
     }
   }
   const validPasswordLower = (password) => {
-    if(password.match(passwordValidationLower)){
-      setErrorPasswordLower('');
+    if(password.match(passLower)){
       return true;
     } else {
-      setErrorPasswordLower("Password must contain at least one lowecase symbol");
-      setErrorShow('active');
+      setErrorPassword((prev) => [...prev, "Password must contain at least one lowecase symbol"]);
+      return false;
     }
   }
   const validPasswordUpper = (password) => {
-    if(password.match(passwordValidationUpper)) {
-      setErrorPasswordUpper('');
+    if(password.match(passUpper)) {
       return true;
     } else {
-      setErrorPasswordUpper("Password must contain at least one uppercase symbol");
-      setErrorShow('active');
+      setErrorPassword((prev) => [...prev, "Password must contain at least one uppercase symbol"]);
+      return false;
     }
   }
 
@@ -62,7 +51,7 @@ const Login = () => {
     validPasswordLeght(userPassword);
     validPasswordLower(userPassword);
     validPasswordUpper(userPassword);
-    if (validPasswordUpper(userPassword) && validPasswordLower(userPassword) && validPasswordLeght(userPassword) && validPasswordDigits(userPassword)){
+    if (!errorPassword.length){
       console.log('Pass OK');
       history.push(books);
     }
@@ -70,10 +59,11 @@ const Login = () => {
 
   const handleEmailChange = ({target}) => {
     setUserEmail(target.value);
+    setErrorPassword([]);
   }
   const handlePasswordChange = ({target}) => {
     setuserPassword(target.value);
-    setErrorShow('');
+    setErrorPassword([]);
   }
 
   return (
@@ -87,10 +77,13 @@ const Login = () => {
         <input type='email' placeholder='E-mail' className='formField e-mail' value={userEmail} onChange={handleEmailChange} required />
         <label>Password</label>
         <input type='password' placeholder='Password' value={userPassword} onChange={handlePasswordChange} required />
-        <span className={`error ${errorShow}`}>{errorPasswordLength}</span>
-        <span className={`error ${errorShow}`}>{errorPasswordDigits}</span>
-        <span className={`error ${errorShow}`}>{errorPasswordLower}</span>
-        <span className={`error ${errorShow}`}>{errorPasswordUpper}</span>
+        {
+          errorPassword.map(el => {
+            return (
+              <span key={v4()} className='error'>{el}</span>
+            )
+          })
+        }
         <button type='submit'>Log In</button>
       </form>
     </main>

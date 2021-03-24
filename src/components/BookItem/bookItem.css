@@ -1,0 +1,57 @@
+@media screen and (min-width: 1024px) {
+  .bookEl {
+    width: 35%;
+    border: 2px solid rgb(29, 38, 46);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 64px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .bookEl {
+    width: 22%;
+    border: 2px solid rgb(29, 38, 46);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 52px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .bookEl {
+    width: 16%;
+    border: 2px solid rgb(29, 38, 46);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 94px;
+  }
+}
+
+.bookTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.bookImg {
+  width: 100%;
+  min-height: 150px;
+}
+
+.bookDescription {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.bookValue {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.buyBook {
+  display: inline;
+  margin-left: 20px;
+}
