@@ -4,6 +4,7 @@ import BookItem from '../BookItem/BookItem';
 import { getBooksList } from './actions.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Carousel from '../Carousel/Carousel';
 
 const Books = ({ getBooksList, booksList }) => {
 
@@ -13,12 +14,7 @@ const Books = ({ getBooksList, booksList }) => {
 
   return(
     <main className="books">
-      <section className="stickySlider">
-        <img></img>
-        <button></button>
-        <button></button>
-        <button></button>
-      </section>
+      <Carousel />
       <section className="booksList">
         {booksList.map((el) => {
           return (

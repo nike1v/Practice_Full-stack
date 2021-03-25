@@ -5,17 +5,12 @@
   justify-content: center;
 }
 
-.stickySlider {
-  padding: 20px 10%;
-  height: 250px;
-}
-
 @media screen and (min-width: 1024px) {
   .booksList {
     display: flex;
     flex-wrap: wrap;
     min-width: 1024px;
-    padding: 0px 200px;
+    padding: 0px 123px;
   }
 }
 
