@@ -1,8 +1,10 @@
 import React  from 'react';
 import { NavLink } from 'react-router-dom';
-import './header.css';
+
 import Logo from '../../images/logo.jpg';
 import { logout,  contacts, cart } from '../../constatnts/routes.js';
+
+import './header.css';
 
 const Header = () => {
   return (

@@ -1,18 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import './spinner.css';
 
-const Spinner = ({ isLoading }) => {
-
-  return (
-    <>
-      {
-        isLoading && <div className="loader"></div>
-      }
-    </>
-  )
-}
+const Spinner = ({ isLoading }) => isLoading && <div className="loader"></div>
 
 Spinner.propTypes = {
   isLoading: PropTypes.bool,

@@ -1,9 +1,11 @@
 import React, { useState  } from 'react';
 import { useHistory } from 'react-router-dom';
+import {  v4  } from 'uuid';
+
 import {  books } from '../../constatnts/routes.js';
 import { passSize, passDigits, passLower, passUpper } from '../../utils/passwordValidation';
+
 import './login.css';
-import {  v4  } from 'uuid';
 
 const Login = () => {
 
@@ -11,46 +13,27 @@ const Login = () => {
   const [errorPassword, setErrorPassword] = useState([]);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
+
+  const composer = (value, ...functions) => functions.reduce((prevFunc, func) => func(value), []);
   
   const validPasswordLeght = (password) => {
-    if (password.match(passSize)){
-      return true;
-    }else {
-      setErrorPassword((prev) => [...prev, 'Password must contain 6 or more symbols']);
-      return false;
-    }
+    if (!password.match(passSize)) 'Password must contain 6 or more symbols';
   }
   const validPasswordDigits = (password) => {
-    if (password.match(passDigits)) {
-      return true;
-    } else {
-      setErrorPassword((prev) => [...prev, "Password must contain at least one number"]);
-      return false;
-    }
+    if (!password.match(passDigits)) "Password must contain at least one number";
   }
   const validPasswordLower = (password) => {
-    if(password.match(passLower)){
-      return true;
-    } else {
-      setErrorPassword((prev) => [...prev, "Password must contain at least one lowecase symbol"]);
-      return false;
-    }
+    if(!password.match(passLower)) "Password must contain at least one lowecase symbol";
   }
   const validPasswordUpper = (password) => {
-    if(password.match(passUpper)) {
-      return true;
-    } else {
-      setErrorPassword((prev) => [...prev, "Password must contain at least one uppercase symbol"]);
-      return false;
-    }
+    if(!password.match(passUpper)) "Password must contain at least one uppercase symbol";
   }
+  
+  const validatePassword = () => composer(userPassword, validPasswordDigits, validPasswordLeght, validPasswordLower, validPasswordUpper);
 
   const handlevalid = (event) => {
     event.preventDefault();
-    validPasswordDigits(userPassword);
-    validPasswordLeght(userPassword);
-    validPasswordLower(userPassword);
-    validPasswordUpper(userPassword);
+    validatePassword();
     if (!errorPassword.length){
       console.log('Pass OK');
       history.push(books);
