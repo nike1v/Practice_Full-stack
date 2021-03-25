@@ -6,14 +6,17 @@ import './app.css';
 import Routes from './Routes/Routes';
 import Layout from './Layout/Layout';
 import ErrorBoundary from './Errors/error';
+import 'normalize.css';
+import Spinner from './Spinner/Spinner';
 
 const App = () => {
   return (
     <Router>
       <ErrorBoundary>
-      <Layout>
-        <Routes />
-      </Layout>
+        <Layout>
+          <Spinner />
+          <Routes />
+        </Layout>
       </ErrorBoundary>
     </Router>  
   );

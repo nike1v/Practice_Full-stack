@@ -1,4 +1,33 @@
 .books {
   width: 100%;
-  margin: 100px 0px 0px 0px;
+  min-height: 100%;
+  padding-top: 120px;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .booksList {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 1024px;
+    padding: 0px 123px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .booksList {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 1024px;
+    padding: 0px 150px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .booksList {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 1024px;
+    padding: 0px 100px;
+  }
 }

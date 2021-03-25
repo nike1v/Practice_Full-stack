@@ -2,6 +2,7 @@ import React  from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 import Logo from '../../images/logo.jpg';
+import { logout,  contacts, cart } from '../../constatnts/routes.js';
 
 const Header = () => {
   return (
@@ -11,9 +12,9 @@ const Header = () => {
         <span className="logoText">GetBooks</span>
       </section>
       <nav className="headerNavigation">
-        <NavLink to="/contacts" className="navButton contacts">Contacts</NavLink>
-        <NavLink to="/cart" className="navButton cart">Cart</NavLink>
-        <NavLink to="/logout" className="navButton logout">Log Out</NavLink>
+        <NavLink to={contacts} className="navButton contacts">Contacts</NavLink>
+        <NavLink to={cart} className="navButton cart">Cart</NavLink>
+        <NavLink to={logout} className="navButton logout">Log Out</NavLink>
       </nav>
     </header>
   )

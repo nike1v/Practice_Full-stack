@@ -36,15 +36,10 @@
   margin-bottom: 10px;
 }
 .error {
-  display: none;
   width  : 100%;
   font-size: 16px;
   color: #900;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-}
-
-.error.active {
   margin-bottom: 5px;
-  display: block;
 }
