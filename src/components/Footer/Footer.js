@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { login } from '../../constatnts/routes.js';
+import { login } from '../../constants/routes.js';
 
 import "./footer.css";
 

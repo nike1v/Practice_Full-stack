@@ -2,7 +2,7 @@ import React  from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '../../images/logo.jpg';
-import { logout,  contacts, cart } from '../../constatnts/routes.js';
+import { logout,  contacts, cart } from '../../constants/routes.js';
 
 import './header.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import { login, logout, books, contacts, cart, detail } from '../../constatnts/routes.js';
+import { login, logout, books, contacts, cart, detail } from '../../constants/routes.js';
 import Books from '../Books/Books';
 import Login from '../Login/Login';
 import Contacts from '../Contacts/Contacts';

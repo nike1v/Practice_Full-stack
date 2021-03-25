@@ -2,7 +2,7 @@ import React, { useState  } from 'react';
 import { useHistory } from 'react-router-dom';
 import {  v4  } from 'uuid';
 
-import {  books } from '../../constatnts/routes.js';
+import {  books } from '../../constants/routes.js';
 import { passSize, passDigits, passLower, passUpper } from '../../utils/passwordValidation';
 
 import './login.css';
@@ -12,32 +12,43 @@ const Login = () => {
   const history = useHistory();
   const [errorPassword, setErrorPassword] = useState([]);
   const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setuserPassword] = useState('');
+  const [userPassword, setUserPassword] = useState('');
 
-  const composer = (value, ...functions) => functions.reduce((prevFunc, func) => func(value), []);
+  const validationCombine = (passwordValue) => (...functions) => functions.reduce((errorsList, func) => {
+    const error = func(passwordValue);
+
+    if(error){
+      return [...errorsList, error];
+    }
+    return errorsList;
+  }, []);
   
   const validPasswordLeght = (password) => {
-    if (!password.match(passSize)) 'Password must contain 6 or more symbols';
+    if (!password.match(passSize)) return 'Password must contain 6 or more symbols'
   }
   const validPasswordDigits = (password) => {
-    if (!password.match(passDigits)) "Password must contain at least one number";
+    if (!password.match(passDigits)) return "Password must contain at least one number"
   }
   const validPasswordLower = (password) => {
-    if(!password.match(passLower)) "Password must contain at least one lowecase symbol";
+    if(!password.match(passLower)) return "Password must contain at least one lowecase symbol"
   }
   const validPasswordUpper = (password) => {
-    if(!password.match(passUpper)) "Password must contain at least one uppercase symbol";
+    if(!password.match(passUpper)) return "Password must contain at least one uppercase symbol"
   }
   
-  const validatePassword = () => composer(userPassword, validPasswordDigits, validPasswordLeght, validPasswordLower, validPasswordUpper);
+  const validatePassword = () => validationCombine(userPassword)(validPasswordDigits, validPasswordLeght, validPasswordLower, validPasswordUpper);
 
   const handlevalid = (event) => {
     event.preventDefault();
-    validatePassword();
-    if (!errorPassword.length){
-      console.log('Pass OK');
-      history.push(books);
+    const errors = validatePassword();
+
+    if (errors.length){
+      setErrorPassword(errors);
+      return;
     }
+
+    console.log('Pass OK');
+    history.push(books);
   }
 
   const handleEmailChange = ({target}) => {
@@ -45,7 +56,7 @@ const Login = () => {
     setErrorPassword([]);
   }
   const handlePasswordChange = ({target}) => {
-    setuserPassword(target.value);
+    setUserPassword(target.value);
     setErrorPassword([]);
   }
 
