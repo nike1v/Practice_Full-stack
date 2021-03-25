@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+import { login } from '../../constants/routes.js';
+
 import "./footer.css";
-import { login } from '../../constatnts/routes.js';
 
 const Footer = () => {
   return (

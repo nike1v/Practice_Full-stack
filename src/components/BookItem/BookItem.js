@@ -1,11 +1,12 @@
 import React from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import './bookItem.css';
 
-const BookItem = ({ el }) => {
+const BookItem = ({ book }) => {
 
-  const { id, name, authorName, currency, price } = el;
+  const { id, name, authorName, currency, price } = book;
   const { url } = useRouteMatch();
 
   const history = useHistory();
@@ -26,7 +27,7 @@ const BookItem = ({ el }) => {
 }
 
 BookItem.propTypes = {
-  el: PropTypes.object,
+  book: PropTypes.object,
 }
 
 export default BookItem;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './error.css';
 import PropTypes from 'prop-types';
+
+import './error.css';
 
 class ErrorBoundary extends Component {
   constructor(props) {

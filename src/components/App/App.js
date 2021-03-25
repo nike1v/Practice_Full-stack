@@ -1,13 +1,13 @@
 import React from 'react';
-import {
-  BrowserRouter as Router
-} from "react-router-dom";
-import './app.css';
-import Routes from './Routes/Routes';
-import Layout from './Layout/Layout';
-import ErrorBoundary from './Errors/error';
+import { BrowserRouter as Router } from "react-router-dom";
+
+import Routes from '../Routes/Routes';
+import Layout from '../Layout/Layout';
+import ErrorBoundary from '../Errors/error';
+import Spinner from '../Spinner/Spinner';
+
 import 'normalize.css';
-import Spinner from './Spinner/Spinner';
+import './app.css';
 
 const App = () => {
   return (
