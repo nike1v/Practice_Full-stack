@@ -1,1 +1,0 @@
-export const booksUrl = (pageNum) => `http://localhost:8001/books?_page=${pageNum}&_limit=24`;

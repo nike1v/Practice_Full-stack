@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import BookItem from '../BookItem/BookItem';
 import { getBooksList, setPageNum } from './actions.js';
 import Carousel from '../Carousel/Carousel';
+import { PAGE_LIMIT } from '../../constants/serverUrl';
 
 import './books.css';
 
@@ -34,7 +35,7 @@ const Books = ({ getBooksList, booksList, pageNum }) => {
       </section>
       <div className="moreBooksButton">
         {
-          (booksList.length !== 60 && booksList.length >= 24) && <button onClick={pageNumSetter}>Load more</button>
+          (booksList.length !== 60 && booksList.length >= PAGE_LIMIT) && <button onClick={pageNumSetter}>Load more</button>
         }
       </div>
     </main>

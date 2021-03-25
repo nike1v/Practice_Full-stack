@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-import { booksUrl } from '../../constatnts/serverUrl';
+import { booksUrl } from '../../constants/serverUrl';
 import { toggleLoader } from '../Spinner/actions.js';
 import { getData } from '../../api/HTTPSRequests';
 
