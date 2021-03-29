@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Logo from '../../images/logo.jpg';
-import { logout,  contacts, cart } from '../../constants/routes.js';
+import { logout, contacts, cart } from '../../constants/routes.js';
 
 import './header.css';
 
 const Header = ({ cartSize }) => {
+
+  const cartCount = cartSize.length;
+
   return (
     <header className="header">
       <section className="logoName">
@@ -17,7 +20,7 @@ const Header = ({ cartSize }) => {
       </section>
       <nav className="headerNavigation">
         <NavLink to={contacts} className="navButton contacts">Contacts</NavLink>
-        <NavLink to={cart} className="navButton cart">Cart {cartSize}</NavLink>
+        <NavLink to={cart} className="navButton cart">Cart {cartCount > 0 && <span>{cartCount}</span>}</NavLink>
         <NavLink to={logout} className="navButton logout">Log Out</NavLink>
       </nav>
     </header>
@@ -25,10 +28,10 @@ const Header = ({ cartSize }) => {
 }
 
 Header.propTypes = {
-  cartSize: PropTypes.number,
+  cartSize: PropTypes.arrayOf(PropTypes.number),
 }
 
-const mapStateToProps = ({ booksStore }) => ({ cartSize: booksStore.cartSize })
+const mapStateToProps = ({ booksStore }) => ({ cartSize: booksStore.cart })
 
 export default connect(
   mapStateToProps,

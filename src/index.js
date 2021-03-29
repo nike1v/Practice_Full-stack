@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux';
-import store from './components/duck';
+
+import App from './components/App/App';
+import store, { preventer } from './components/duck';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={preventer}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

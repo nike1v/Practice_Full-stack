@@ -7,16 +7,13 @@ const initialState = {
   pageNum: 1,
   cart: [],
   favorite: [],
-  cartSize: 0,
 };
 
 const idToggler = (toggleId, state) => {
   const findId = state.find((id) => id === toggleId);
-  console.log(findId);
   if(findId){
     return state.filter((id) => id !== toggleId);
   }
-  console.log(state);
   return [...state, toggleId];
 }
 
@@ -33,7 +30,6 @@ const booksStore = handleActions(
     [actions.toggleCart]: (state, action) => ({
       ...state,
       cart: idToggler(action.payload, state.cart),
-      cartSize: state.cart.length,
     }),
     [actions.toggleFavorite]: (state, action) => ({
       ...state,

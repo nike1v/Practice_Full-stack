@@ -9,12 +9,15 @@ export const setPageNum = createAction('SET_PAGE_NUM');
 export const toggleCart = createAction('TOGGLE_CART');
 export const toggleFavorite = createAction('TOGGLE_FAVORITE');
 
-export const getBooksList = ( pageNum ) => {
-  return (dispatch) => {
+export const getBooksList = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const currentPageNumber = state.booksStore.pageNum;
     dispatch(toggleLoader(true));
-    return getData(booksUrl(pageNum))
+    return getData(booksUrl(currentPageNumber))
       .then((booksList) => {
         dispatch(setBooksList(booksList));
+        dispatch(setPageNum(currentPageNumber+1));
         dispatch(toggleLoader(false));
       })
   }

@@ -6,6 +6,35 @@
     padding: 10px;
     margin: 20px 64px;
   }
+
+  .favBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .favBook.inFavorite {
+    color: rgb(170, 131, 25)
+  }
+  
+  .shareBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook.inCart {
+    color: rgb(170, 25, 25)
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -16,6 +45,35 @@
     padding: 10px;
     margin: 20px 52px;
   }
+
+  .favBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .favBook.inFavorite {
+    color: rgb(170, 131, 25)
+  }
+  
+  .shareBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook.inCart {
+    color: rgb(170, 25, 25)
+  }
 }
 
 @media screen and (min-width: 2560px) {
@@ -25,6 +83,35 @@
     border-radius: 5px;
     padding: 10px;
     margin: 20px 94px;
+  }
+
+  .favBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .favBook.inFavorite {
+    color: rgb(170, 131, 25)
+  }
+  
+  .shareBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook {
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .buyBook.inCart {
+    color: rgb(170, 25, 25)
   }
 }
 
@@ -54,21 +141,6 @@
 .bookActivities {
   display: flex;
   padding: 10px 0px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-}
-
-.buyBook {
-  height: 100%;
-  margin: 0px 5px;
-}
-
-.favBook {
-  height: 100%;
-  margin: 0px 5px;
-}
-
-.shareBook {
-  height: 100%;
-  margin: 0px 5px;
 }
