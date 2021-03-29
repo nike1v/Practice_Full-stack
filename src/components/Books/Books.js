@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
 import BookItem from '../BookItem/BookItem';
 import { getBooksList, setPageNum } from './actions.js';

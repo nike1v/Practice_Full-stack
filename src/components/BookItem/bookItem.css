@@ -51,7 +51,24 @@
   text-align: center;
 }
 
+.bookActivities {
+  display: flex;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+}
+
 .buyBook {
-  display: inline;
-  margin-left: 20px;
+  height: 100%;
+  margin: 0px 5px;
+}
+
+.favBook {
+  height: 100%;
+  margin: 0px 5px;
+}
+
+.shareBook {
+  height: 100%;
+  margin: 0px 5px;
 }
