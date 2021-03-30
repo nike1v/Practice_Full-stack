@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const booksPropTypes = PropTypes.shape({ 
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   authorName: PropTypes.string,
   price: PropTypes.number,

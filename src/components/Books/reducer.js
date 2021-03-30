@@ -5,6 +5,7 @@ import * as actions from './actions.js';
 const initialState = {
   booksList: [],
   pageNum: 1,
+  booksCount: 0,
   cart: [],
   favorite: [],
 };
@@ -35,6 +36,10 @@ const booksStore = handleActions(
       ...state,
       favorite: idToggler(action.payload, state.favorite),
     }),
+    [actions.setGoodsCount]: (state, action) => ({
+      ...state,
+      booksCount: action.payload,
+    })
   },
   initialState
 )

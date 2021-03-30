@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Logo from '../../images/logo.jpg';
-import { logout, contacts, cart } from '../../constants/routes.js';
+import { logout, contacts, cart as cartRoute } from '../../constants/routes.js';
 
 import './header.css';
 
-const Header = ({ cartSize }) => {
+const Header = ({ cart }) => {
 
-  const cartCount = cartSize.length;
+  const cartCount = cart.length;
 
   return (
     <header className="header">
@@ -20,7 +20,7 @@ const Header = ({ cartSize }) => {
       </section>
       <nav className="headerNavigation">
         <NavLink to={contacts} className="navButton contacts">Contacts</NavLink>
-        <NavLink to={cart} className="navButton cart">Cart {cartCount > 0 && <span>{cartCount}</span>}</NavLink>
+        <NavLink to={cartRoute} className="navButton cart">Cart {cartCount > 0 && <span>{cartCount}</span>}</NavLink>
         <NavLink to={logout} className="navButton logout">Log Out</NavLink>
       </nav>
     </header>
@@ -28,10 +28,10 @@ const Header = ({ cartSize }) => {
 }
 
 Header.propTypes = {
-  cartSize: PropTypes.arrayOf(PropTypes.number),
+  cart: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
-const mapStateToProps = ({ booksStore }) => ({ cartSize: booksStore.cart })
+const mapStateToProps = ({ booksStore }) => ({ cart: booksStore.cart })
 
 export default connect(
   mapStateToProps,

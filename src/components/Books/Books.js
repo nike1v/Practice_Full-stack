@@ -10,7 +10,7 @@ import { booksPropTypes } from '../../propTypes/booksPropTypes';
 
 import './books.css';
 
-const Books = ({ getBooksList, booksList }) => {
+const Books = ({ getBooksList, booksList, booksCount }) => {
 
   useEffect(() => {
     if(!booksList.length) {
@@ -34,7 +34,7 @@ const Books = ({ getBooksList, booksList }) => {
       </section>
       <div className="moreBooksButton">
         {
-          (booksList.length !== 60 && booksList.length >= PAGE_LIMIT) && <button onClick={getNextPage}>Load more</button>
+          (booksList.length !== booksCount && booksList.length >= PAGE_LIMIT) && <button onClick={getNextPage}>Load more</button>
         }
       </div>
     </main>
@@ -42,11 +42,12 @@ const Books = ({ getBooksList, booksList }) => {
 }
 
 Books.propTypes = {
-  getBooksList: PropTypes.func,
-  booksList: PropTypes.arrayOf(booksPropTypes),
+  getBooksList: PropTypes.func.isRequired,
+  booksList: PropTypes.arrayOf(booksPropTypes).isRequired,
+  booksCount: PropTypes.number.isRequired,
 }
 
-const mapStateToProps = ({ booksStore }) => ({ booksList: booksStore.booksList})
+const mapStateToProps = ({ booksStore }) => ({ booksList: booksStore.booksList, booksCount: booksStore.booksCount })
 
 export default connect(
   mapStateToProps,

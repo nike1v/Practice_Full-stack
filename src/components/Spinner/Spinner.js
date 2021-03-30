@@ -10,6 +10,10 @@ Spinner.propTypes = {
   isLoading: PropTypes.bool,
 }
 
+Spinner.defaultProps = {
+  isLoading: false,
+}
+
 const mapStateToProps = ({ loaderStore }) => ({ isLoading: loaderStore.isLoading })
 
 export default connect(

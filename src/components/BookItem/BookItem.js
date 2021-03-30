@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar, faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
 
 import { isBookInCartSelector, isBookInFavoriteSelector } from '../Books/selectors';
 import { toggleCart, toggleFavorite } from '../Books/actions';
@@ -12,12 +12,10 @@ import { booksPropTypes } from '../../propTypes/booksPropTypes';
 
 import './bookItem.css';
 
-const BookItem = ({ book, isBookInCart, isBookInFavorite }) => {
+const BookItem = ({ book, isBookInCart, isBookInFavorite, toggleCart, toggleFavorite }) => {
 
   const { id, name, authorName, currency, price } = book;
   const { url } = useRouteMatch();
-  const dispatch = useDispatch();
-
   const history = useHistory();
 
   const handleClickBook = () => {
@@ -26,11 +24,16 @@ const BookItem = ({ book, isBookInCart, isBookInFavorite }) => {
    }
 
   const handleCart = () => {
-    dispatch(toggleCart(id));
+    toggleCart(id);
   }
+
   const handleFavorite = () => {
-    dispatch(toggleFavorite(id));
+    toggleFavorite(id);
   }
+
+  const favClassName = classNames('favBook', { inFavorite: isBookInFavorite });
+
+  const cartClassName = classNames('buyBook', { inCart: isBookInCart });
 
   return (
     <div className="bookEl" onClick={handleClickBook}>
@@ -40,14 +43,14 @@ const BookItem = ({ book, isBookInCart, isBookInFavorite }) => {
       </div>
       <div className="bookDescription">{name} {authorName}</div>
       <div className="bookActivities" onClick={(event) => event.stopPropagation()}>
-        <button className={`favBook ${isBookInFavorite ? "inFavorite" : ""}`} onClick={handleFavorite}>
+        <button className={favClassName} onClick={handleFavorite}>
           <FontAwesomeIcon icon={faStar} size="2x" />
         </button>
         <button className="shareBook">
           <FontAwesomeIcon icon={faShareAltSquare} size="2x" />
         </button>
         <div className="bookValue">{currency} {price}</div>
-        <button className={`buyBook ${isBookInCart ? "inCart" : ""}`} onClick={handleCart}>
+        <button className={cartClassName} onClick={handleCart}>
           <FontAwesomeIcon icon={faShoppingCart} size="2x" />
         </button>
       </div>
@@ -56,9 +59,11 @@ const BookItem = ({ book, isBookInCart, isBookInFavorite }) => {
 }
 
 BookItem.propTypes = {
-  book: booksPropTypes,
-  isBookInCart: PropTypes.bool,
+  book: booksPropTypes.isRequired,
+  toggleCart: PropTypes.func.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
   isBookInFavorite: PropTypes.bool,
+  isBookInCart: PropTypes.bool,
 }
 
 BookItem.defaultProps = {
@@ -66,7 +71,10 @@ BookItem.defaultProps = {
   isBookInFavorite: false,
 }
 
-const mapStateToProps = (state, props) => ({ isBookInCart: isBookInCartSelector(state, props), isBookInFavorite: isBookInFavoriteSelector(state, props) })
+const mapStateToProps = (state, props) => ({ 
+  isBookInCart: isBookInCartSelector(state, props),
+  isBookInFavorite: isBookInFavoriteSelector(state, props),
+})
 
 export default connect(
   mapStateToProps,
