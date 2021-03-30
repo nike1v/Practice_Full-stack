@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux'
 
 import BookItem from '../BookItem/BookItem';
-import { getBooksList, setPageNum } from './actions.js';
+import { getBooksList } from './actions.js';
 import Carousel from '../Carousel/Carousel';
 import { PAGE_LIMIT } from '../../constants/serverUrl';
+import { booksPropTypes } from '../../propTypes/booksPropTypes';
 
 import './books.css';
 
-const Books = ({ getBooksList, booksList, pageNum }) => {
-
-  const dispatch = useDispatch()
+const Books = ({ getBooksList, booksList, booksCount }) => {
 
   useEffect(() => {
-    getBooksList(pageNum);
-  }, [pageNum]);
+    if(!booksList.length) {
+      getBooksList();
+    }
+  }, []);
 
-  const pageNumSetter = () => {
-    const nextPage = pageNum + 1;
-    dispatch(setPageNum(nextPage));
+  const getNextPage = () => {
+    getBooksList();
   }
 
   return(
@@ -35,7 +34,7 @@ const Books = ({ getBooksList, booksList, pageNum }) => {
       </section>
       <div className="moreBooksButton">
         {
-          (booksList.length !== 60 && booksList.length >= PAGE_LIMIT) && <button onClick={pageNumSetter}>Load more</button>
+          (booksList.length !== booksCount && booksList.length >= PAGE_LIMIT) && <button onClick={getNextPage}>Load more</button>
         }
       </div>
     </main>
@@ -43,14 +42,14 @@ const Books = ({ getBooksList, booksList, pageNum }) => {
 }
 
 Books.propTypes = {
-  getBooksList: PropTypes.func,
-  booksList: PropTypes.array,
-  pageNum: PropTypes.number,
+  getBooksList: PropTypes.func.isRequired,
+  booksList: PropTypes.arrayOf(booksPropTypes).isRequired,
+  booksCount: PropTypes.number.isRequired,
 }
 
-const mapStateToProps = ({ booksStore }) => ({ booksList: booksStore.booksList, pageNum: booksStore.pageNum })
+const mapStateToProps = ({ booksStore }) => ({ booksList: booksStore.booksList, booksCount: booksStore.booksCount })
 
 export default connect(
   mapStateToProps,
-  { getBooksList, setPageNum }
+  { getBooksList }
 )(Books);

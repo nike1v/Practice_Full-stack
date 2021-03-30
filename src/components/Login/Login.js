@@ -23,22 +23,22 @@ const Login = () => {
     return errorsList;
   }, []);
   
-  const validPasswordLeght = (password) => {
+  const validPasswordLength = (password) => {
     if (!password.match(passSize)) return 'Password must contain 6 or more symbols'
   }
   const validPasswordDigits = (password) => {
     if (!password.match(passDigits)) return "Password must contain at least one number"
   }
   const validPasswordLower = (password) => {
-    if(!password.match(passLower)) return "Password must contain at least one lowecase symbol"
+    if(!password.match(passLower)) return "Password must contain at least one lowercase symbol"
   }
   const validPasswordUpper = (password) => {
     if(!password.match(passUpper)) return "Password must contain at least one uppercase symbol"
   }
   
-  const validatePassword = () => validationCombine(userPassword)(validPasswordDigits, validPasswordLeght, validPasswordLower, validPasswordUpper);
+  const validatePassword = () => validationCombine(userPassword)(validPasswordDigits, validPasswordLength, validPasswordLower, validPasswordUpper);
 
-  const handlevalid = (event) => {
+  const handleValid = (event) => {
     event.preventDefault();
     const errors = validatePassword();
 
@@ -46,8 +46,7 @@ const Login = () => {
       setErrorPassword(errors);
       return;
     }
-
-    console.log('Pass OK');
+    
     history.push(books);
   }
 
@@ -66,7 +65,7 @@ const Login = () => {
         Here you can Login
         <span className='additionalFormText'>and buy books</span>
       </section>
-      <form name='loginForm' className='loginForm' onSubmit={handlevalid}>
+      <form name='loginForm' className='loginForm' onSubmit={handleValid}>
         <label>E-mail</label>
         <input type='email' placeholder='E-mail' className='formField e-mail' value={userEmail} onChange={handleEmailChange} required />
         <label>Password</label>

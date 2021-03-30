@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.5.0",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
-    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.3",
@@ -19,14 +20,24 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "slick-carousel": "^1.8.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "commander": "^4.1.1",
+    "concurrently": "^6.0.0",
+    "cool-images": "^1.0.3",
+    "namor": "^2.0.2",
+    "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server -w books.json --port 8001",
+    "fullStart": "concurrently \"npm run server\" \"npm start\"",
+    "generateBooks": "node generatorJson -n" 
   },
   "eslintConfig": {
     "extends": [
