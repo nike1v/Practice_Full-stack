@@ -40,102 +40,41 @@
 @media screen and (min-width: 1440px) {
   .bookEl {
     width: 22%;
-    border: 2px solid rgb(29, 38, 46);
-    border-radius: 5px;
-    padding: 10px;
     margin: 20px 52px;
-  }
-
-  .favBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .favBook.inFavorite {
-    color: rgb(170, 131, 25)
-  }
-  
-  .shareBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .buyBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .buyBook.inCart {
-    color: rgb(170, 25, 25)
   }
 }
 
 @media screen and (min-width: 2560px) {
   .bookEl {
     width: 16%;
-    border: 2px solid rgb(29, 38, 46);
-    border-radius: 5px;
-    padding: 10px;
     margin: 20px 94px;
-  }
-
-  .favBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .favBook.inFavorite {
-    color: rgb(170, 131, 25)
-  }
-  
-  .shareBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .buyBook {
-    margin: 0px 5px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .buyBook.inCart {
-    color: rgb(170, 25, 25)
   }
 }
 
 .bookTitle {
   text-align: center;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
 .bookImg {
+  padding-top: 5px;
   width: 100%;
-  min-height: 150px;
+  height: 150px;
 }
 
 .bookDescription {
   margin-top: 10px;
   text-align: left;
-  font-size: 15px;
+  font-size: 16px;
+  padding-left: 20px;
 }
 
 .bookValue {
-  margin-top: 10px;
   text-align: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .bookActivities {
