@@ -28,7 +28,7 @@ const Header = ({ cart }) => {
 }
 
 Header.propTypes = {
-  cart: PropTypes.arrayOf(PropTypes.number).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 const mapStateToProps = ({ booksStore }) => ({ cart: booksStore.cart })

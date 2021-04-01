@@ -9,9 +9,7 @@ program.option('-n, --number [number]', 'add number to generate');
 program.parse(process.argv);
 const options = program.opts();
 
-const priceGenerator = Math.floor(Math.random() * 101); 
 
-const imageGenerator = coolImages.one(160, 260);
 
 const numberOfGoods = options.number;
 
@@ -22,12 +20,14 @@ if(numberOfGoods) {
     for (let i = 0; i < numberOfGoods; i++) {
         let generatedObject = {
           id: v4(),
-          bookName: namor.generate(),
-          authorName: namor.generate(),
-          price: priceGenerator,
-          currency: namor.generate({words: 1, saltLength: 0}),
+          bookName: namor.generate({words: 3}),
+          authorName: namor.generate({words: 2}),
+          price: Math.floor(Math.random() * 101),
+          currency: namor.generate({words: 1}),
           currencyMark: "$",
-          image: imageGenerator,
+          image: coolImages.one(160, 260),
+          shortDescription: namor.generate({words: 2}),
+          longDescription: namor.generate({words: 4}),
         }
         result.books.push(generatedObject);
     }

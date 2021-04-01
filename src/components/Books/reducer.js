@@ -8,6 +8,7 @@ const initialState = {
   booksCount: 0,
   cart: [],
   favorite: [],
+  selectedBook: null,
 };
 
 const idToggler = (toggleId, state) => {
@@ -39,6 +40,10 @@ const booksStore = handleActions(
     [actions.setGoodsCount]: (state, action) => ({
       ...state,
       booksCount: action.payload,
+    }),
+    [actions.setSelectedBook]: (state, action) => ({
+      ...state,
+      selectedBook: action.payload,
     })
   },
   initialState

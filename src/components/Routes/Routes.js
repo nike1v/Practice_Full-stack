@@ -7,7 +7,7 @@ import Login from '../Login/Login';
 import Contacts from '../Contacts/Contacts';
 import Cart from '../Cart/Cart';
 import Logout from '../Logout/Logout';
-import Detail from '../BookItem/Detail.js';
+import Detail from '../Details/Details.js';
 
 const Routes = () => {
   return (

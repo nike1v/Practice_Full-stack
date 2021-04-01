@@ -7,18 +7,19 @@ import { faShoppingCart, faStar, faShareAltSquare } from '@fortawesome/free-soli
 import classNames from 'classnames';
 
 import { isBookInCartSelector, isBookInFavoriteSelector } from '../Books/selectors';
-import { toggleCart, toggleFavorite } from '../Books/actions';
+import { toggleCart, toggleFavorite, setSelectedBook } from '../Books/actions';
 import { booksPropTypes } from '../../propTypes/booksPropTypes';
 
 import './bookItem.css';
 
-const BookItem = ({ book, isBookInCart, isBookInFavorite, toggleCart, toggleFavorite }) => {
+const BookItem = ({ book, isBookInCart, isBookInFavorite, toggleCart, toggleFavorite, setSelectedBook }) => {
 
-  const { id, name, authorName, currency, price } = book;
+  const { id, bookName, currencyMark, price, image, shortDescription } = book;
   const { url } = useRouteMatch();
   const history = useHistory();
 
   const handleClickBook = () => {
+    setSelectedBook(book);
     const getWay = `${url}/${id}`;
     history.push(getWay);
    }
@@ -37,11 +38,15 @@ const BookItem = ({ book, isBookInCart, isBookInFavorite, toggleCart, toggleFavo
 
   return (
     <div className="bookEl" onClick={handleClickBook}>
-      <div className='bookTitle'>{name}</div>
-      <div>
-        <img className="bookImg"></img>
+      <div className='bookTitle'>
+        {bookName}
       </div>
-      <div className="bookDescription">{name} {authorName}</div>
+      <div>
+        <img className="bookImg" src={image} />
+      </div>
+      <div className="bookDescription">
+        {shortDescription}
+      </div>
       <div className="bookActivities" onClick={(event) => event.stopPropagation()}>
         <button className={favClassName} onClick={handleFavorite}>
           <FontAwesomeIcon icon={faStar} size="2x" />
@@ -49,7 +54,10 @@ const BookItem = ({ book, isBookInCart, isBookInFavorite, toggleCart, toggleFavo
         <button className="shareBook">
           <FontAwesomeIcon icon={faShareAltSquare} size="2x" />
         </button>
-        <div className="bookValue">{currency} {price}</div>
+        <div className="bookValue">
+          {currencyMark}
+          {price}
+        </div>
         <button className={cartClassName} onClick={handleCart}>
           <FontAwesomeIcon icon={faShoppingCart} size="2x" />
         </button>
@@ -64,6 +72,7 @@ BookItem.propTypes = {
   toggleFavorite: PropTypes.func.isRequired,
   isBookInFavorite: PropTypes.bool,
   isBookInCart: PropTypes.bool,
+  setSelectedBook: PropTypes.func.isRequired,
 }
 
 BookItem.defaultProps = {
@@ -78,5 +87,5 @@ const mapStateToProps = (state, props) => ({
 
 export default connect(
   mapStateToProps,
-  { toggleCart, toggleFavorite }
+  { toggleCart, toggleFavorite, setSelectedBook }
 )(BookItem);
