@@ -1,13 +1,7 @@
-import React from 'react';
+import React from "react"
 
-import './logout.css';
+import "./logout.css"
 
-const Logout = () => {
-  return (
-    <main className='logout'>
-      Logout component;
-    </main>
-  )
-}
+const Logout = () => <main className="logout">Logout component;</main>
 
-export default Logout;
+export default Logout

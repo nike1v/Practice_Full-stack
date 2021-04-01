@@ -1,67 +1,83 @@
-import React, { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faStar, faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faShoppingCart,
+  faStar,
+  faShareAltSquare,
+} from "@fortawesome/free-solid-svg-icons"
+import classNames from "classnames"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import { useParams, useHistory } from "react-router-dom"
 
-import { isBookInCartDetailSelector, isBookInFavoriteDetailSelector } from '../Books/selectors';
-import { toggleCart, toggleFavorite, getBookById } from '../Books/actions';
-import { booksPropTypes } from '../../propTypes/booksPropTypes';
-import { books } from '../../constants/routes';
+import {
+  isBookInCartDetailSelector,
+  isBookInFavoriteDetailSelector,
+} from "../Books/selectors"
+import { toggleCart, toggleFavorite, getBookById } from "../Books/actions"
+import booksPropTypes from "../../propTypes/booksPropTypes"
+import { books } from "../../constants/routes"
 
-import './details.css';
+import "./details.css"
 
-const Detail = ({ selectedBook, isBookInCart, isBookInFavorite, toggleCart, toggleFavorite, getBookById }) => {
-
-  const favClassName = classNames('favBook', { inFavorite: isBookInFavorite });
-  const cartClassName = classNames('buyBook', { inCart: isBookInCart });
-  const { bookId } = useParams();
-  const history = useHistory();
+const Detail = ({
+  selectedBook,
+  isBookInCart,
+  isBookInFavorite,
+  toggleCart,
+  toggleFavorite,
+  getBookById,
+}) => {
+  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite })
+  const cartClassName = classNames("buyBook", { inCart: isBookInCart })
+  const { bookId } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
-    if(!selectedBook){
-      getBookById(bookId);
+    if (!selectedBook) {
+      getBookById(bookId)
     }
   }, [selectedBook])
 
   const handleCart = () => {
-    toggleCart(bookId);
+    toggleCart(bookId)
   }
 
   const handleFavorite = () => {
-    toggleFavorite(bookId);
+    toggleFavorite(bookId)
   }
 
   const handleBack = () => {
-    history.push(books);
+    history.push(books)
   }
 
   const renderBookDetails = () => {
-    const { bookName, currency, price, image, longDescription } = selectedBook;
+    const { bookName, currency, price, image, longDescription } = selectedBook
     return (
       <section className="bookDetails">
-        <img className="bookImage" src={image} />
+        <img className="bookImage" src={image} alt={image} />
         <div className="bookContent">
-          <div className="bookDetailedTitle">
-            {bookName}
-          </div>
-          <div className="bookDetailedDescription">
-            {longDescription}
-          </div>
+          <div className="bookDetailedTitle">{bookName}</div>
+          <div className="bookDetailedDescription">{longDescription}</div>
           <div className="bookButtons">
-            <button className={favClassName} onClick={handleFavorite}>
+            <button
+              type="button"
+              className={favClassName}
+              onClick={handleFavorite}
+            >
               <FontAwesomeIcon icon={faStar} size="2x" />
             </button>
-            <button className="shareBook">
+            <button type="button" className="shareBook">
               <FontAwesomeIcon icon={faShareAltSquare} size="2x" />
             </button>
             <div className="bookPrice">
               {currency} {price}
             </div>
-            <button className={cartClassName} onClick={handleCart}>
+            <button
+              type="button"
+              className={cartClassName}
+              onClick={handleCart}
+            >
               <FontAwesomeIcon icon={faShoppingCart} size="2x" />
             </button>
           </div>
@@ -71,9 +87,9 @@ const Detail = ({ selectedBook, isBookInCart, isBookInFavorite, toggleCart, togg
   }
 
   return (
-    <main className='detail'>
+    <main className="detail">
       <div className="backButtonDiv">
-        <button className="backButton" onClick={handleBack}>
+        <button type="button" className="backButton" onClick={handleBack}>
           Back
         </button>
       </div>
@@ -103,7 +119,8 @@ const mapStateToProps = (state) => ({
   isBookInFavorite: isBookInFavoriteDetailSelector(state),
 })
 
-export default connect(
-  mapStateToProps,
-  { toggleCart, toggleFavorite, getBookById }
-)(Detail);
+export default connect(mapStateToProps, {
+  toggleCart,
+  toggleFavorite,
+  getBookById,
+})(Detail)

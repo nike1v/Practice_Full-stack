@@ -1,41 +1,40 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
-import BookItem from '../BookItem/BookItem';
-import { getBooksList } from './actions.js';
-import Carousel from '../Carousel/Carousel';
-import { PAGE_LIMIT } from '../../constants/serverUrl';
-import { booksPropTypes } from '../../propTypes/booksPropTypes';
+import BookItem from "../BookItem/BookItem"
+import { getBooksList } from "./actions"
+import Carousel from "../Carousel/Carousel"
+import { PAGE_LIMIT } from "../../constants/serverUrl"
+import booksPropTypes from "../../propTypes/booksPropTypes"
 
-import './books.css';
+import "./books.css"
 
 const Books = ({ getBooksList, booksList, booksCount }) => {
-
   useEffect(() => {
-    if(!booksList.length) {
-      getBooksList();
+    if (!booksList.length) {
+      getBooksList()
     }
-  }, []);
+  }, [])
 
   const getNextPage = () => {
-    getBooksList();
+    getBooksList()
   }
 
-  return(
+  return (
     <main className="books">
       <Carousel />
       <section className="booksList">
-        {booksList.map((book) => {
-          return (
-            <BookItem key={book.id} book={book} />
-          )
-        })}
+        {booksList.map((book) => (
+          <BookItem key={book.id} book={book} />
+        ))}
       </section>
       <div className="moreBooksButton">
-        {
-          (booksList.length !== booksCount && booksList.length >= PAGE_LIMIT) && <button onClick={getNextPage}>Load more</button>
-        }
+        {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (
+          <button type="button" onClick={getNextPage}>
+            Load more
+          </button>
+        )}
       </div>
     </main>
   )
@@ -47,9 +46,9 @@ Books.propTypes = {
   booksCount: PropTypes.number.isRequired,
 }
 
-const mapStateToProps = ({ booksStore }) => ({ booksList: booksStore.booksList, booksCount: booksStore.booksCount })
+const mapStateToProps = ({ booksStore }) => ({
+  booksList: booksStore.booksList,
+  booksCount: booksStore.booksCount,
+})
 
-export default connect(
-  mapStateToProps,
-  { getBooksList }
-)(Books);
+export default connect(mapStateToProps, { getBooksList })(Books)

@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
+    "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
@@ -26,7 +27,15 @@
     "commander": "^4.1.1",
     "concurrently": "^6.0.0",
     "cool-images": "^1.0.3",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "namor": "^2.0.2",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
@@ -37,13 +46,7 @@
     "eject": "react-scripts eject",
     "server": "json-server -w books.json --port 8001",
     "fullStart": "concurrently \"npm run server\" \"npm start\"",
-    "generateBooks": "node generatorJson -n" 
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "generateBooks": "node generatorJson -n"
   },
   "browserslist": {
     "production": [
@@ -55,6 +58,17 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
     ]
   }
 }
