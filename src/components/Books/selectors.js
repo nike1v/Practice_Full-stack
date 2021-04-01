@@ -1,12 +1,12 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect"
 
-const getBooksInCart = (state) => state.booksStore.cart;
+const getBooksInCart = (state) => state.booksStore.cart
 
-const getBooksInFavorite = (state) => state.booksStore.favorite;
+const getBooksInFavorite = (state) => state.booksStore.favorite
 
-const getBookId = (state, { book }) => book.id;
+const getBookId = (state, { book }) => book.id
 
-const getDetailId = ({ booksStore }) => booksStore.selectedBook?.id;
+const getDetailId = ({ booksStore }) => booksStore.selectedBook?.id
 
 export const isBookInCartSelector = createSelector(
   [getBooksInCart, getBookId],

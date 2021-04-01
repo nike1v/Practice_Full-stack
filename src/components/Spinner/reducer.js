@@ -1,19 +1,19 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from "redux-actions"
 
-import * as actions from './actions';
+import * as actions from "./actions"
 
 const initialState = {
   isLoading: false,
-};
+}
 
 const loaderStore = handleActions(
   {
     [actions.toggleLoader]: (state, action) => ({
       ...state,
-      isLoading: action.payload
-    })
+      isLoading: action.payload,
+    }),
   },
   initialState
 )
 
-export default loaderStore;
+export default loaderStore

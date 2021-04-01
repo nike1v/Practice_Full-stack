@@ -1,13 +1,7 @@
-import React from 'react';
+import React from "react"
 
-import './contacts.css';
+import "./contacts.css"
 
-const Contacts = () => {
-  return (
-    <main className='contacts'>
-      Contacts component;
-    </main>
-  )
-}
+const Contacts = () => <main className="contacts">Contacts component;</main>
 
-export default Contacts;
+export default Contacts
