@@ -10,6 +10,20 @@
   padding: 15px 105px 15px 15px;
 }
 
+.searchBox {
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.searchField {
+  width: 20%;
+  padding-left: 7px;
+  border: none;
+  border-bottom: 1px black solid;
+  font-size: 18px;
+  outline: none;
+}
+
 @media screen and (min-width: 1024px) {
   .booksList {
     display: flex;
