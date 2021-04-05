@@ -10,8 +10,10 @@ export const queryBuilderBooks = (pageNum, bookId, bookName) => {
   if (bookId) {
     return `http://localhost:8001/books/${bookId}`
   }
+
   if (bookName) {
     return `http://localhost:8001/books?bookName_like=${bookName}&_page=${pageNum}&_limit=${PAGE_LIMIT}`
   }
+
   return `http://localhost:8001/books?_page=${pageNum}&_limit=${PAGE_LIMIT}`
 }

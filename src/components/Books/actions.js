@@ -15,28 +15,22 @@ export const setSearchValue = createAction("SET_SEARCH_VALUE")
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState()
-  const currentPageNumber = state.booksStore.pageNum
-  const goodsNumber = state.booksStore.booksCount
-  // eslint-disable-next-line prefer-destructuring
-  const searchValue = state.booksStore.searchValue
+  const {
+    pageNum: currentPageNumber,
+    booksCount: goodsNumber,
+    searchValue,
+  } = state.booksStore
 
   try {
     dispatch(toggleLoader(true))
-    const booksList = await getData(queryBuilderBooks(currentPageNumber))
+    const booksList = await getData(
+      queryBuilderBooks(currentPageNumber, null, searchValue)
+    )
 
     if (!goodsNumber) {
       const fullBooksList = await getData(countBooksUrl)
       const bookCount = fullBooksList.count
       dispatch(setGoodsCount(bookCount))
-      return
-    }
-
-    if (searchValue) {
-      const booksList = await getData(
-        queryBuilderBooks(currentPageNumber, null, searchValue)
-      )
-      dispatch(setBooksList(booksList))
-      return
     }
 
     dispatch(setBooksList(booksList))
@@ -62,16 +56,3 @@ export const getBookById = (bookId) => async (dispatch, getState) => {
     dispatch(toggleLoader(false))
   }
 }
-
-/* export const searchBooksByName = (bookName) => async (dispatch) => {
-  try {
-    dispatch(toggleLoader(true))
-    const booksByName = await getData(searchUrl(bookName))
-    dispatch(searchedBooksList(booksByName))
-  } catch (error) {
-    console.error(error)
-  } finally {
-    dispatch(toggleLoader(false))
-  }
-}
- */

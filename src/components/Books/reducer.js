@@ -25,8 +25,8 @@ const booksStore = handleActions(
     [actions.setBooksList]: (state, action) => ({
       ...state,
       booksList: state.searchValue
-        ? [...state.booksList, ...action.payload]
-        : [...action.payload],
+        ? [...action.payload]
+        : [...state.booksList, ...action.payload],
     }),
     [actions.setPageNum]: (state, action) => ({
       ...state,

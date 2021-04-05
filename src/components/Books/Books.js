@@ -3,14 +3,20 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
 import BookItem from "../BookItem/BookItem"
-import { getBooksList, setSearchValue } from "./actions"
+import { getBooksList, setSearchValue, setPageNum } from "./actions"
 import Carousel from "../Carousel/Carousel"
 import { PAGE_LIMIT } from "../../constants/serverUrl"
 import booksPropTypes from "../../propTypes/booksPropTypes"
 
 import "./books.css"
 
-const Books = ({ getBooksList, booksList, booksCount, setSearchValue }) => {
+const Books = ({
+  getBooksList,
+  booksList,
+  booksCount,
+  setSearchValue,
+  setPageNum,
+}) => {
   useEffect(() => {
     if (!booksList.length) {
       getBooksList()
@@ -23,7 +29,15 @@ const Books = ({ getBooksList, booksList, booksCount, setSearchValue }) => {
 
   const handleSearch = ({ target: { value } }) => {
     setSearchValue(value)
-    getBooksList()
+  }
+
+  const getList = (event) => {
+    if (event.key === "Enter") {
+      setPageNum(1)
+      setTimeout(() => {
+        getBooksList()
+      }, 2000)
+    }
   }
 
   return (
@@ -35,6 +49,7 @@ const Books = ({ getBooksList, booksList, booksCount, setSearchValue }) => {
           placeholder="Search for books by Name"
           className="searchField"
           onChange={handleSearch}
+          onKeyPress={getList}
         />
       </section>
       <section className="booksList">
@@ -58,6 +73,7 @@ Books.propTypes = {
   booksList: PropTypes.arrayOf(booksPropTypes).isRequired,
   booksCount: PropTypes.number.isRequired,
   setSearchValue: PropTypes.func.isRequired,
+  setPageNum: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ booksStore }) => ({
@@ -66,4 +82,8 @@ const mapStateToProps = ({ booksStore }) => ({
   searchValue: booksStore.searchValue,
 })
 
-export default connect(mapStateToProps, { getBooksList, setSearchValue })(Books)
+export default connect(mapStateToProps, {
+  getBooksList,
+  setSearchValue,
+  setPageNum,
+})(Books)
