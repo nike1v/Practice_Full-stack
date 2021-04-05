@@ -32,6 +32,8 @@
     "no-use-before-define": "off",
     "no-return-await": "off",
     "prefer-promise-reject-errors": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "prefer-rest-params": "off",
+    "no-return-assign": "off"
   }
 }

@@ -1,6 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useCallback } from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+import _ from "lodash"
 
 import BookItem from "../BookItem/BookItem"
 import { getBooksList, setSearchValue, setPageNum } from "./actions"
@@ -27,17 +28,45 @@ const Books = ({
     getBooksList()
   }
 
-  const handleSearch = ({ target: { value } }) => {
-    setSearchValue(value)
+  const searchByName = () => {
+    setPageNum(1)
+    getBooksList()
   }
 
-  const getList = (event) => {
-    if (event.key === "Enter") {
-      setPageNum(1)
+  const throttling = useCallback(_.throttle(searchByName, 2000), [])
+
+  /* const throttle = (func, limit) => {
+    let inThrottle = false
+    let savedArgs
+    let savedThis
+
+    const warper = (...args) => {
+      if (inThrottle) {
+        savedArgs = args
+        savedThis = this
+        return
+      }
+
+      func.apply(this, args)
+
+      inThrottle = true
+
       setTimeout(() => {
-        getBooksList()
-      }, 2000)
+        inThrottle = false
+
+        if (savedArgs) {
+          warper.apply(savedThis, savedArgs)
+          savedThis = null
+          savedArgs = savedThis
+        }
+      }, limit)
     }
+    return warper
+  } */
+
+  const handleSearch = ({ target: { value } }) => {
+    setSearchValue(value)
+    throttling()
   }
 
   return (
@@ -49,7 +78,6 @@ const Books = ({
           placeholder="Search for books by Name"
           className="searchField"
           onChange={handleSearch}
-          onKeyPress={getList}
         />
       </section>
       <section className="booksList">
