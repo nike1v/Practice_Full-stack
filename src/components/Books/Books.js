@@ -17,6 +17,7 @@ const Books = ({
   booksCount,
   setSearchValue,
   setPageNum,
+  favoriteBooks,
 }) => {
   const [toggleFavorite, setToggleFavorite] = useState(false);
 
@@ -39,17 +40,20 @@ const Books = ({
 
   const handleSearch = ({ target: { value } }) => {
     setSearchValue(value);
-
     throttlingSearch();
   };
 
-  const renderAllBooks = () => {
-    booksList.map((book) => <BookItem key={book.id} book={book} />);
+  const toggleFavoriteRender = () => {
+    setToggleFavorite(!toggleFavorite);
   };
 
-  const renderFavoriteBooks = () => {
-    booksList.filter((book) => <BookItem key={book.id} book={book} />);
-  };
+  const renderAllBooks = () =>
+    booksList.map((book) => <BookItem key={book.id} book={book} />);
+
+  const renderFavoriteBooks = () =>
+    booksList
+      .filter((book) => favoriteBooks.includes(book.id))
+      .map((book) => <BookItem key={book.id} book={book} />);
 
   return (
     <main className="books">
@@ -58,8 +62,9 @@ const Books = ({
         <button
           type="button"
           className="favoriteToggleButton"
-          onClick={setToggleFavorite(!toggleFavorite)}
-        />
+          onClick={toggleFavoriteRender}>
+          {toggleFavorite ? "Show all" : "Show only favorite"}
+        </button>
         <input
           type="text"
           placeholder="Search for books by Name"
@@ -68,7 +73,7 @@ const Books = ({
         />
       </section>
       <section className="booksList">
-        {toggleFavorite ? renderAllBooks() : renderFavoriteBooks()}
+        {toggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
       </section>
       <div className="moreBooksButton">
         {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (
@@ -87,12 +92,14 @@ Books.propTypes = {
   booksCount: PropTypes.number.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   setPageNum: PropTypes.func.isRequired,
+  favoriteBooks: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const mapStateToProps = ({ booksStore }) => ({
   booksList: booksStore.booksList,
   booksCount: booksStore.booksCount,
   searchValue: booksStore.searchValue,
+  favoriteBooks: booksStore.favorite,
 });
 
 export default connect(mapStateToProps, {
