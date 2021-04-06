@@ -1,23 +1,23 @@
-import React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShoppingCart,
   faStar,
   faShareAltSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import classNames from "classnames";
+} from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
 
 import {
   isBookInCartSelector,
   isBookInFavoriteSelector,
-} from "../Books/selectors";
-import { toggleCart, toggleFavorite, setSelectedBook } from "../Books/actions";
-import booksPropTypes from "../../propTypes/booksPropTypes";
+} from '../Books/selectors';
+import { toggleCart, toggleFavorite, setSelectedBook } from '../Books/actions';
+import booksPropTypes from '../../propTypes/booksPropTypes';
 
-import "./bookItem.css";
+import './bookItem.css';
 
 const BookItem = ({
   book,
@@ -45,9 +45,9 @@ const BookItem = ({
     toggleFavorite(id);
   };
 
-  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite });
+  const favClassName = classNames('favBook', { inFavorite: isBookInFavorite });
 
-  const cartClassName = classNames("buyBook", { inCart: isBookInCart });
+  const cartClassName = classNames('buyBook', { inCart: isBookInCart });
 
   return (
     <div

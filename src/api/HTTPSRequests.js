@@ -20,12 +20,12 @@ const parseResponse = async (response) => {
     return data;
   }
   if (response.ok) {
-    console.log("res.ok");
+    console.log('res.ok');
   } else if (response.status === 401) {
-    console.log("401");
+    console.log('401');
   } else if (response.status === 301) {
-    console.log("301");
+    console.log('301');
   } else {
-    Promise.reject("Unhandled status");
+    Promise.reject('Unhandled status');
   }
 };

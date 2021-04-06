@@ -14,7 +14,8 @@
       {
         "semi": true,
         "endOfLine": "crlf",
-        "jsxBracketSameLine": true
+        "jsxBracketSameLine": true,
+        "singleQuote": true
       }
     ],
     "import/no-extraneous-dependencies": [

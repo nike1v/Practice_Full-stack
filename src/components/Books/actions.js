@@ -1,21 +1,21 @@
 /* eslint-disable no-console */
-import { createAction } from "redux-actions";
+import { createAction } from 'redux-actions';
 
 import {
   queryBuilderBooks,
   getBooksCount,
   getBook,
-} from "../../constants/serverUrl";
-import { toggleLoader } from "../Spinner/actions";
-import { getData } from "../../api/HTTPSRequests";
+} from '../../constants/serverUrl';
+import { toggleLoader } from '../Spinner/actions';
+import { getData } from '../../api/HTTPSRequests';
 
-export const setBooksList = createAction("SET_BOOKS_LIST");
-export const setPageNum = createAction("SET_PAGE_NUM");
-export const toggleCart = createAction("TOGGLE_CART");
-export const toggleFavorite = createAction("TOGGLE_FAVORITE");
-export const setGoodsCount = createAction("SET_GOODS_COUNT");
-export const setSelectedBook = createAction("SET_SELECTED_BOOK");
-export const setSearchValue = createAction("SET_SEARCH_VALUE");
+export const setBooksList = createAction('SET_BOOKS_LIST');
+export const setPageNum = createAction('SET_PAGE_NUM');
+export const toggleCart = createAction('TOGGLE_CART');
+export const toggleFavorite = createAction('TOGGLE_FAVORITE');
+export const setGoodsCount = createAction('SET_GOODS_COUNT');
+export const setSelectedBook = createAction('SET_SELECTED_BOOK');
+export const setSearchValue = createAction('SET_SEARCH_VALUE');
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState();

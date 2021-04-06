@@ -1,12 +1,12 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import Logo from "../../images/logo.jpg";
-import { logout, contacts, cart as cartRoute } from "../../constants/routes";
+import Logo from '../../images/logo.jpg';
+import { logout, contacts, cart as cartRoute } from '../../constants/routes';
 
-import "./header.css";
+import './header.css';
 
 const Header = ({ cart }) => {
   const cartCount = cart.length;

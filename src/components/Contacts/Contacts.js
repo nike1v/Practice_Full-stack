@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./contacts.css";
+import './contacts.css';
 
 const Contacts = () => <main className="contacts">Contacts component;</main>;
 

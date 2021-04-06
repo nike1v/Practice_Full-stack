@@ -1,6 +1,6 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
-import * as actions from "./actions";
+import * as actions from './actions';
 
 const initialState = {
   booksList: [],
@@ -9,7 +9,7 @@ const initialState = {
   cart: [],
   favorite: [],
   selectedBook: null,
-  searchValue: "",
+  searchValue: '',
 };
 
 const idToggler = (toggleId, state) => {

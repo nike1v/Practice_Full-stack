@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-const coolImages = require("cool-images");
-const namor = require("namor");
-const fs = require("fs");
-const { Command } = require("commander");
-const { v4 } = require("uuid");
+const coolImages = require('cool-images');
+const namor = require('namor');
+const fs = require('fs');
+const { Command } = require('commander');
+const { v4 } = require('uuid');
 
 const program = new Command();
-program.version("0.0.1");
-program.option("-n, --number [number]", "add number to generate");
+program.version('0.0.1');
+program.option('-n, --number [number]', 'add number to generate');
 program.parse(process.argv);
 const options = program.opts();
 
@@ -24,10 +24,11 @@ if (numberOfGoods) {
         authorName: namor.generate({ words: 2 }),
         price: Math.floor(Math.random() * 101),
         currency: namor.generate({ words: 1 }),
-        currencyMark: "$",
+        currencyMark: '$',
         image: coolImages.one(160, 260),
         shortDescription: namor.generate({ words: 2 }),
         longDescription: namor.generate({ words: 4 }),
+        category: 'horror',
       };
       result.books.push(generatedObject);
     }
@@ -39,11 +40,11 @@ if (numberOfGoods) {
   };
   const generatedGoods = goodsGenerator();
   fs.writeFile(
-    "./books.json",
+    './books.json',
     JSON.stringify(generatedGoods, null, 2),
     (err) => {
       if (err) throw err;
-      console.log("complete");
+      console.log('complete');
     }
   );
 }

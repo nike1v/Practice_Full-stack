@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import _ from "lodash";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-import BookItem from "../BookItem/BookItem";
-import { getBooksList, setSearchValue, setPageNum } from "./actions";
-import Carousel from "../Carousel/Carousel";
-import { PAGE_LIMIT } from "../../constants/serverUrl";
-import booksPropTypes from "../../propTypes/booksPropTypes";
+import BookItem from '../BookItem/BookItem';
+import { getBooksList, setSearchValue, setPageNum } from './actions';
+import Carousel from '../Carousel/Carousel';
+import { PAGE_LIMIT } from '../../constants/serverUrl';
+import booksPropTypes from '../../propTypes/booksPropTypes';
 
-import "./books.css";
+import './books.css';
 
 const Books = ({
   getBooksList,
@@ -19,7 +19,7 @@ const Books = ({
   setPageNum,
   favoriteBooks,
 }) => {
-  const [toggleFavorite, setToggleFavorite] = useState(false);
+  const [isToggleFavorite, setIsToggleFavorite] = useState(false);
 
   useEffect(() => {
     if (!booksList.length) {
@@ -44,7 +44,7 @@ const Books = ({
   };
 
   const toggleFavoriteRender = () => {
-    setToggleFavorite(!toggleFavorite);
+    setIsToggleFavorite(!isToggleFavorite);
   };
 
   const renderAllBooks = () =>
@@ -63,7 +63,7 @@ const Books = ({
           type="button"
           className="favoriteToggleButton"
           onClick={toggleFavoriteRender}>
-          {toggleFavorite ? "Show all" : "Show only favorite"}
+          {isToggleFavorite ? 'Show all' : 'Show only favorite'}
         </button>
         <input
           type="text"
@@ -73,7 +73,7 @@ const Books = ({
         />
       </section>
       <section className="booksList">
-        {toggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
+        {isToggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
       </section>
       <div className="moreBooksButton">
         {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (

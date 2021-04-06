@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShoppingCart,
   faStar,
   faShareAltSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 
 import {
   isBookInCartDetailSelector,
   isBookInFavoriteDetailSelector,
-} from "../Books/selectors";
-import { toggleCart, toggleFavorite, getBookById } from "../Books/actions";
-import booksPropTypes from "../../propTypes/booksPropTypes";
-import { books } from "../../constants/routes";
+} from '../Books/selectors';
+import { toggleCart, toggleFavorite, getBookById } from '../Books/actions';
+import booksPropTypes from '../../propTypes/booksPropTypes';
+import { books } from '../../constants/routes';
 
-import "./details.css";
+import './details.css';
 
 const Detail = ({
   selectedBook,
@@ -28,8 +28,8 @@ const Detail = ({
   toggleFavorite,
   getBookById,
 }) => {
-  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite });
-  const cartClassName = classNames("buyBook", { inCart: isBookInCart });
+  const favClassName = classNames('favBook', { inFavorite: isBookInFavorite });
+  const cartClassName = classNames('buyBook', { inCart: isBookInCart });
   const { bookId } = useParams();
   const history = useHistory();
 

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { v4 } from "uuid";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { v4 } from 'uuid';
 
-import { books } from "../../constants/routes";
+import { books } from '../../constants/routes';
 import {
   passSize,
   passDigits,
   passLower,
   passUpper,
-} from "../../utils/passwordValidation";
+} from '../../utils/passwordValidation';
 
-import "./login.css";
+import './login.css';
 
 const Login = () => {
   const history = useHistory();
   const [errorPassword, setErrorPassword] = useState([]);
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
 
   const validationCombine = (passwordValue) => (...functions) =>
     functions.reduce((errorsList, func) => {
@@ -30,19 +30,19 @@ const Login = () => {
 
   const validPasswordLength = (password) => {
     if (!password.match(passSize))
-      return "Password must contain 6 or more symbols";
+      return 'Password must contain 6 or more symbols';
   };
   const validPasswordDigits = (password) => {
     if (!password.match(passDigits))
-      return "Password must contain at least one number";
+      return 'Password must contain at least one number';
   };
   const validPasswordLower = (password) => {
     if (!password.match(passLower))
-      return "Password must contain at least one lowercase symbol";
+      return 'Password must contain at least one lowercase symbol';
   };
   const validPasswordUpper = (password) => {
     if (!password.match(passUpper))
-      return "Password must contain at least one uppercase symbol";
+      return 'Password must contain at least one uppercase symbol';
   };
 
   const validatePassword = () =>

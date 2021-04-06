@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./cart.css";
+import './cart.css';
 
 const Cart = () => <main className="cart">Cart component;</main>;
 
