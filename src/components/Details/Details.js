@@ -1,24 +1,24 @@
-import React, { useEffect } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
   faStar,
   faShareAltSquare,
-} from "@fortawesome/free-solid-svg-icons"
-import classNames from "classnames"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { useParams, useHistory } from "react-router-dom"
+} from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 import {
   isBookInCartDetailSelector,
   isBookInFavoriteDetailSelector,
-} from "../Books/selectors"
-import { toggleCart, toggleFavorite, getBookById } from "../Books/actions"
-import booksPropTypes from "../../propTypes/booksPropTypes"
-import { books } from "../../constants/routes"
+} from "../Books/selectors";
+import { toggleCart, toggleFavorite, getBookById } from "../Books/actions";
+import booksPropTypes from "../../propTypes/booksPropTypes";
+import { books } from "../../constants/routes";
 
-import "./details.css"
+import "./details.css";
 
 const Detail = ({
   selectedBook,
@@ -28,31 +28,31 @@ const Detail = ({
   toggleFavorite,
   getBookById,
 }) => {
-  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite })
-  const cartClassName = classNames("buyBook", { inCart: isBookInCart })
-  const { bookId } = useParams()
-  const history = useHistory()
+  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite });
+  const cartClassName = classNames("buyBook", { inCart: isBookInCart });
+  const { bookId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     if (!selectedBook) {
-      getBookById(bookId)
+      getBookById(bookId);
     }
-  }, [selectedBook])
+  }, [selectedBook]);
 
   const handleCart = () => {
-    toggleCart(bookId)
-  }
+    toggleCart(bookId);
+  };
 
   const handleFavorite = () => {
-    toggleFavorite(bookId)
-  }
+    toggleFavorite(bookId);
+  };
 
   const handleBack = () => {
-    history.push(books)
-  }
+    history.push(books);
+  };
 
   const renderBookDetails = () => {
-    const { bookName, currency, price, image, longDescription } = selectedBook
+    const { bookName, currency, price, image, longDescription } = selectedBook;
     return (
       <section className="bookDetails">
         <img className="bookImage" src={image} alt={image} />
@@ -63,8 +63,7 @@ const Detail = ({
             <button
               type="button"
               className={favClassName}
-              onClick={handleFavorite}
-            >
+              onClick={handleFavorite}>
               <FontAwesomeIcon icon={faStar} size="2x" />
             </button>
             <button type="button" className="shareBook">
@@ -76,15 +75,14 @@ const Detail = ({
             <button
               type="button"
               className={cartClassName}
-              onClick={handleCart}
-            >
+              onClick={handleCart}>
               <FontAwesomeIcon icon={faShoppingCart} size="2x" />
             </button>
           </div>
         </div>
       </section>
-    )
-  }
+    );
+  };
 
   return (
     <main className="detail">
@@ -95,8 +93,8 @@ const Detail = ({
       </div>
       {selectedBook && renderBookDetails()}
     </main>
-  )
-}
+  );
+};
 
 Detail.propTypes = {
   selectedBook: booksPropTypes,
@@ -105,22 +103,22 @@ Detail.propTypes = {
   getBookById: PropTypes.func.isRequired,
   isBookInFavorite: PropTypes.bool,
   isBookInCart: PropTypes.bool,
-}
+};
 
 Detail.defaultProps = {
   isBookInCart: false,
   isBookInFavorite: false,
   selectedBook: null,
-}
+};
 
 const mapStateToProps = (state) => ({
   selectedBook: state.booksStore.selectedBook,
   isBookInCart: isBookInCartDetailSelector(state),
   isBookInFavorite: isBookInFavoriteDetailSelector(state),
-})
+});
 
 export default connect(mapStateToProps, {
   toggleCart,
   toggleFavorite,
   getBookById,
-})(Detail)
+})(Detail);

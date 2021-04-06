@@ -1,49 +1,49 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
-import { v4 } from "uuid"
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { v4 } from "uuid";
 
-import { books } from "../../constants/routes"
+import { books } from "../../constants/routes";
 import {
   passSize,
   passDigits,
   passLower,
   passUpper,
-} from "../../utils/passwordValidation"
+} from "../../utils/passwordValidation";
 
-import "./login.css"
+import "./login.css";
 
 const Login = () => {
-  const history = useHistory()
-  const [errorPassword, setErrorPassword] = useState([])
-  const [userEmail, setUserEmail] = useState("")
-  const [userPassword, setUserPassword] = useState("")
+  const history = useHistory();
+  const [errorPassword, setErrorPassword] = useState([]);
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   const validationCombine = (passwordValue) => (...functions) =>
     functions.reduce((errorsList, func) => {
-      const error = func(passwordValue)
+      const error = func(passwordValue);
 
       if (error) {
-        return [...errorsList, error]
+        return [...errorsList, error];
       }
-      return errorsList
-    }, [])
+      return errorsList;
+    }, []);
 
   const validPasswordLength = (password) => {
     if (!password.match(passSize))
-      return "Password must contain 6 or more symbols"
-  }
+      return "Password must contain 6 or more symbols";
+  };
   const validPasswordDigits = (password) => {
     if (!password.match(passDigits))
-      return "Password must contain at least one number"
-  }
+      return "Password must contain at least one number";
+  };
   const validPasswordLower = (password) => {
     if (!password.match(passLower))
-      return "Password must contain at least one lowercase symbol"
-  }
+      return "Password must contain at least one lowercase symbol";
+  };
   const validPasswordUpper = (password) => {
     if (!password.match(passUpper))
-      return "Password must contain at least one uppercase symbol"
-  }
+      return "Password must contain at least one uppercase symbol";
+  };
 
   const validatePassword = () =>
     validationCombine(userPassword)(
@@ -51,28 +51,28 @@ const Login = () => {
       validPasswordLength,
       validPasswordLower,
       validPasswordUpper
-    )
+    );
 
   const handleValid = (event) => {
-    event.preventDefault()
-    const errors = validatePassword()
+    event.preventDefault();
+    const errors = validatePassword();
 
     if (errors.length) {
-      setErrorPassword(errors)
-      return
+      setErrorPassword(errors);
+      return;
     }
 
-    history.push(books)
-  }
+    history.push(books);
+  };
 
   const handleEmailChange = ({ target }) => {
-    setUserEmail(target.value)
-    setErrorPassword([])
-  }
+    setUserEmail(target.value);
+    setErrorPassword([]);
+  };
   const handlePasswordChange = ({ target }) => {
-    setUserPassword(target.value)
-    setErrorPassword([])
-  }
+    setUserPassword(target.value);
+    setErrorPassword([]);
+  };
 
   return (
     <main className="login">
@@ -106,7 +106,7 @@ const Login = () => {
         <button type="submit">Log In</button>
       </form>
     </main>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

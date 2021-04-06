@@ -1,5 +1,5 @@
-import React from "react"
-import { Route, Switch, Redirect } from "react-router-dom"
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import {
   login,
@@ -8,13 +8,13 @@ import {
   contacts,
   cart,
   detail,
-} from "../../constants/routes"
-import Books from "../Books/Books"
-import Login from "../Login/Login"
-import Contacts from "../Contacts/Contacts"
-import Cart from "../Cart/Cart"
-import Logout from "../Logout/Logout"
-import Detail from "../Details/Details"
+} from "../../constants/routes";
+import Books from "../Books/Books";
+import Login from "../Login/Login";
+import Contacts from "../Contacts/Contacts";
+import Cart from "../Cart/Cart";
+import Logout from "../Logout/Logout";
+import Detail from "../Details/Details";
 
 const Routes = () => (
   <Switch>
@@ -26,6 +26,6 @@ const Routes = () => (
     <Route path={logout} exact component={Logout} />
     <Route path={detail} exact component={Detail} />
   </Switch>
-)
+);
 
-export default Routes
+export default Routes;

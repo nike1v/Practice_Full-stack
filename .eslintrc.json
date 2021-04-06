@@ -12,7 +12,9 @@
     "prettier/prettier": [
       "error",
       {
-        "semi": false
+        "semi": true,
+        "endOfLine": "crlf",
+        "jsxBracketSameLine": true
       }
     ],
     "import/no-extraneous-dependencies": [
