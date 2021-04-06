@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 
 import {
   login,
@@ -18,6 +18,7 @@ import Detail from "../Details/Details"
 
 const Routes = () => (
   <Switch>
+    <Redirect exact from="/" to={login} />
     <Route path={books} exact component={Books} />
     <Route path={login} exact component={Login} />
     <Route path={contacts} exact component={Contacts} />

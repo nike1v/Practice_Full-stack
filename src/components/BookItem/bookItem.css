@@ -13,27 +13,27 @@
     border: none;
     outline: none;
   }
-  
+
   .favBook.inFavorite {
-    color: rgb(170, 131, 25)
+    color: rgb(170, 131, 25);
   }
-  
+
   .shareBook {
     margin: 0px 5px;
     background-color: transparent;
     border: none;
     outline: none;
   }
-  
+
   .buyBook {
     margin: 0px 5px;
     background-color: transparent;
     border: none;
     outline: none;
   }
-  
+
   .buyBook.inCart {
-    color: rgb(170, 25, 25)
+    color: rgb(170, 25, 25);
   }
 }
 

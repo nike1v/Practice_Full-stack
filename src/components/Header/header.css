@@ -38,7 +38,7 @@
   text-decoration: none;
 }
 
-.navButton.cart{
+.navButton.cart {
   border: solid black 2px;
   border-radius: 15px;
   padding: 7px 10px 7px 10px;
@@ -46,7 +46,7 @@
   background-color: gainsboro;
 }
 
-.navButton.logOut{
+.navButton.logOut {
   border: solid black 2px;
   border-radius: 15px;
   padding: 7px 10px 7px 10px;

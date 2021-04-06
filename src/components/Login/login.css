@@ -17,7 +17,7 @@
 .loginFormLabel .additionalFormText {
   display: block;
   font-size: 18px;
-  color:rgba(173, 172, 172, 0.76)
+  color: rgba(173, 172, 172, 0.76);
 }
 
 .loginForm {
@@ -36,7 +36,7 @@
   margin-bottom: 10px;
 }
 .error {
-  width  : 100%;
+  width: 100%;
   font-size: 16px;
   color: #900;
   background-color: rgb(255, 255, 255);

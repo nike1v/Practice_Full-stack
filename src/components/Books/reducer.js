@@ -9,6 +9,7 @@ const initialState = {
   cart: [],
   favorite: [],
   selectedBook: null,
+  searchValue: "",
 }
 
 const idToggler = (toggleId, state) => {
@@ -23,7 +24,9 @@ const booksStore = handleActions(
   {
     [actions.setBooksList]: (state, action) => ({
       ...state,
-      booksList: [...state.booksList, ...action.payload],
+      booksList: state.searchValue
+        ? [...action.payload]
+        : [...state.booksList, ...action.payload],
     }),
     [actions.setPageNum]: (state, action) => ({
       ...state,
@@ -44,6 +47,10 @@ const booksStore = handleActions(
     [actions.setSelectedBook]: (state, action) => ({
       ...state,
       selectedBook: action.payload,
+    }),
+    [actions.setSearchValue]: (state, action) => ({
+      ...state,
+      searchValue: action.payload,
     }),
   },
   initialState

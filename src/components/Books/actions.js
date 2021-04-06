@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { createAction } from "redux-actions"
 
-import { booksUrl, bookUrl, countBooksUrl } from "../../constants/serverUrl"
+import { queryBuilderBooks, countBooksUrl } from "../../constants/serverUrl"
 import { toggleLoader } from "../Spinner/actions"
 import { getData } from "../../api/HTTPSRequests"
 
@@ -11,15 +11,21 @@ export const toggleCart = createAction("TOGGLE_CART")
 export const toggleFavorite = createAction("TOGGLE_FAVORITE")
 export const setGoodsCount = createAction("SET_GOODS_COUNT")
 export const setSelectedBook = createAction("SET_SELECTED_BOOK")
+export const setSearchValue = createAction("SET_SEARCH_VALUE")
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState()
-  const currentPageNumber = state.booksStore.pageNum
-  const goodsNumber = state.booksStore.booksCount
+  const {
+    pageNum: currentPageNumber,
+    booksCount: goodsNumber,
+    searchValue,
+  } = state.booksStore
 
   try {
     dispatch(toggleLoader(true))
-    const booksList = await getData(booksUrl(currentPageNumber))
+    const booksList = await getData(
+      queryBuilderBooks(currentPageNumber, null, searchValue)
+    )
 
     if (!goodsNumber) {
       const fullBooksList = await getData(countBooksUrl)
@@ -36,10 +42,13 @@ export const getBooksList = () => async (dispatch, getState) => {
   }
 }
 
-export const getBookById = (bookId) => async (dispatch) => {
+export const getBookById = (bookId) => async (dispatch, getState) => {
+  const state = getState()
+  const currentPageNumber = state.booksStore.pageNum
+
   try {
     dispatch(toggleLoader(true))
-    const bookById = await getData(bookUrl(bookId))
+    const bookById = await getData(queryBuilderBooks(currentPageNumber, bookId))
     dispatch(setSelectedBook(bookById))
   } catch (error) {
     console.error(error)
