@@ -1,19 +1,26 @@
-export const PAGE_LIMIT = 24
-/* export const booksUrl = (pageNum) =>
-  `http://localhost:8001/books?_page=${pageNum}&_limit=${PAGE_LIMIT}`
-export const bookUrl = (bookId) => `http://localhost:8001/books/${bookId}`
-export const searchUrl = (bookName) =>
-  `http://localhost:8001/books?bookName_like=${bookName}` */
-export const countBooksUrl = `http://localhost:8001/booksCount`
+export const PAGE_LIMIT = 24;
+export const BASE_ULR = 'http://localhost:8001/';
 
-export const queryBuilderBooks = (pageNum, bookId, bookName) => {
-  if (bookId) {
-    return `http://localhost:8001/books/${bookId}`
+const booksCount = 'booksCount';
+const booksListUrl = 'books';
+const searchQueryParam = 'bookName_like=';
+const pageQueryParam = '_page=';
+const limitQueryParam = '&_limit=';
+const categoryFilterParam = '&category=';
+
+export const getBook = (bookId) => `${BASE_ULR}${booksListUrl}/${bookId}`;
+export const getBooksCount = `${BASE_ULR}${booksCount}`;
+
+export const queryBuilderBooks = (pageNum, bookSearchValue, categoryFilter) => {
+  let booksList = `${BASE_ULR}${booksListUrl}?${pageQueryParam}${pageNum}${limitQueryParam}${PAGE_LIMIT}`;
+
+  if (categoryFilter) {
+    booksList = `${booksList}${categoryFilterParam}${categoryFilter}&`;
   }
 
-  if (bookName) {
-    return `http://localhost:8001/books?bookName_like=${bookName}&_page=${pageNum}&_limit=${PAGE_LIMIT}`
+  if (bookSearchValue) {
+    booksList = `${booksList}${searchQueryParam}${bookSearchValue}`;
   }
 
-  return `http://localhost:8001/books?_page=${pageNum}&_limit=${PAGE_LIMIT}`
-}
+  return booksList;
+};

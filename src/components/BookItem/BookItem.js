@@ -1,23 +1,23 @@
-import React from "react"
-import { useHistory, useRouteMatch } from "react-router-dom"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import React from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShoppingCart,
   faStar,
   faShareAltSquare,
-} from "@fortawesome/free-solid-svg-icons"
-import classNames from "classnames"
+} from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
 
 import {
   isBookInCartSelector,
   isBookInFavoriteSelector,
-} from "../Books/selectors"
-import { toggleCart, toggleFavorite, setSelectedBook } from "../Books/actions"
-import booksPropTypes from "../../propTypes/booksPropTypes"
+} from '../Books/selectors';
+import { toggleCart, toggleFavorite, setSelectedBook } from '../Books/actions';
+import booksPropTypes from '../../propTypes/booksPropTypes';
 
-import "./bookItem.css"
+import './bookItem.css';
 
 const BookItem = ({
   book,
@@ -27,35 +27,34 @@ const BookItem = ({
   toggleFavorite,
   setSelectedBook,
 }) => {
-  const { id, bookName, currencyMark, price, image, shortDescription } = book
-  const { url } = useRouteMatch()
-  const history = useHistory()
+  const { id, bookName, currencyMark, price, image, shortDescription } = book;
+  const { url } = useRouteMatch();
+  const history = useHistory();
 
   const handleClickBook = () => {
-    setSelectedBook(book)
-    const getWay = `${url}/${id}`
-    history.push(getWay)
-  }
+    setSelectedBook(book);
+    const getWay = `${url}/${id}`;
+    history.push(getWay);
+  };
 
   const handleCart = () => {
-    toggleCart(id)
-  }
+    toggleCart(id);
+  };
 
   const handleFavorite = () => {
-    toggleFavorite(id)
-  }
+    toggleFavorite(id);
+  };
 
-  const favClassName = classNames("favBook", { inFavorite: isBookInFavorite })
+  const favClassName = classNames('favBook', { inFavorite: isBookInFavorite });
 
-  const cartClassName = classNames("buyBook", { inCart: isBookInCart })
+  const cartClassName = classNames('buyBook', { inCart: isBookInCart });
 
   return (
     <div
       className="bookEl"
       role="button"
       onClick={handleClickBook}
-      tabIndex={-10}
-    >
+      tabIndex={-10}>
       <div className="bookTitle">{bookName}</div>
       <div>
         <img className="bookImg" src={image} alt={image} />
@@ -65,8 +64,7 @@ const BookItem = ({
         className="bookActivities"
         role="button"
         onClick={(event) => event.stopPropagation()}
-        tabIndex={-15}
-      >
+        tabIndex={-15}>
         <button type="button" className={favClassName} onClick={handleFavorite}>
           <FontAwesomeIcon icon={faStar} size="2x" />
         </button>
@@ -82,8 +80,8 @@ const BookItem = ({
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 BookItem.propTypes = {
   book: booksPropTypes.isRequired,
@@ -92,20 +90,20 @@ BookItem.propTypes = {
   isBookInFavorite: PropTypes.bool,
   isBookInCart: PropTypes.bool,
   setSelectedBook: PropTypes.func.isRequired,
-}
+};
 
 BookItem.defaultProps = {
   isBookInCart: false,
   isBookInFavorite: false,
-}
+};
 
 const mapStateToProps = (state, props) => ({
   isBookInCart: isBookInCartSelector(state, props),
   isBookInFavorite: isBookInFavoriteSelector(state, props),
-})
+});
 
 export default connect(mapStateToProps, {
   toggleCart,
   toggleFavorite,
   setSelectedBook,
-})(BookItem)
+})(BookItem);

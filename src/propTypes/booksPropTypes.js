@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const booksPropTypes = PropTypes.shape({
   id: PropTypes.string,
@@ -10,6 +10,6 @@ const booksPropTypes = PropTypes.shape({
   image: PropTypes.string,
   shortDescription: PropTypes.string,
   longDescription: PropTypes.string,
-})
+});
 
-export default booksPropTypes
+export default booksPropTypes;

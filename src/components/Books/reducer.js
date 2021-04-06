@@ -1,6 +1,6 @@
-import { handleActions } from "redux-actions"
+import { handleActions } from 'redux-actions';
 
-import * as actions from "./actions"
+import * as actions from './actions';
 
 const initialState = {
   booksList: [],
@@ -9,16 +9,16 @@ const initialState = {
   cart: [],
   favorite: [],
   selectedBook: null,
-  searchValue: "",
-}
+  searchValue: '',
+};
 
 const idToggler = (toggleId, state) => {
-  const findId = state.find((id) => id === toggleId)
+  const findId = state.find((id) => id === toggleId);
   if (findId) {
-    return state.filter((id) => id !== toggleId)
+    return state.filter((id) => id !== toggleId);
   }
-  return [...state, toggleId]
-}
+  return [...state, toggleId];
+};
 
 const booksStore = handleActions(
   {
@@ -54,6 +54,6 @@ const booksStore = handleActions(
     }),
   },
   initialState
-)
+);
 
-export default booksStore
+export default booksStore;

@@ -1,9 +1,9 @@
-import React from "react"
-import Slider from "react-slick"
+import React from 'react';
+import Slider from 'react-slick';
 
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import "./carousel.css"
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './carousel.css';
 
 const Carousel = () => {
   const settings = {
@@ -14,7 +14,7 @@ const Carousel = () => {
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
-  }
+  };
 
   return (
     <section className="stickySlider">
@@ -36,7 +36,7 @@ const Carousel = () => {
         />
       </Slider>
     </section>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

@@ -1,10 +1,10 @@
-import { handleActions } from "redux-actions"
+import { handleActions } from 'redux-actions';
 
-import * as actions from "./actions"
+import * as actions from './actions';
 
 const initialState = {
   isLoading: false,
-}
+};
 
 const loaderStore = handleActions(
   {
@@ -14,6 +14,6 @@ const loaderStore = handleActions(
     }),
   },
   initialState
-)
+);
 
-export default loaderStore
+export default loaderStore;

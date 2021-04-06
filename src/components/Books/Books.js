@@ -1,15 +1,15 @@
-import React, { useEffect, useCallback } from "react"
-import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import _ from "lodash"
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-import BookItem from "../BookItem/BookItem"
-import { getBooksList, setSearchValue, setPageNum } from "./actions"
-import Carousel from "../Carousel/Carousel"
-import { PAGE_LIMIT } from "../../constants/serverUrl"
-import booksPropTypes from "../../propTypes/booksPropTypes"
+import BookItem from '../BookItem/BookItem';
+import { getBooksList, setSearchValue, setPageNum } from './actions';
+import Carousel from '../Carousel/Carousel';
+import { PAGE_LIMIT } from '../../constants/serverUrl';
+import booksPropTypes from '../../propTypes/booksPropTypes';
 
-import "./books.css"
+import './books.css';
 
 const Books = ({
   getBooksList,
@@ -17,62 +17,54 @@ const Books = ({
   booksCount,
   setSearchValue,
   setPageNum,
+  favoriteBooks,
 }) => {
+  const [isToggleFavorite, setIsToggleFavorite] = useState(false);
+
   useEffect(() => {
     if (!booksList.length) {
-      getBooksList()
+      getBooksList();
     }
-  }, [])
+  }, []);
 
   const getNextPage = () => {
-    getBooksList()
-  }
+    getBooksList();
+  };
 
   const searchByName = () => {
-    setPageNum(1)
-    getBooksList()
-  }
+    setPageNum(1);
+    getBooksList();
+  };
 
-  const throttling = useCallback(_.throttle(searchByName, 2000), [])
-
-  /* const throttle = (func, limit) => {
-    let inThrottle = false
-    let savedArgs
-    let savedThis
-
-    const warper = (...args) => {
-      if (inThrottle) {
-        savedArgs = args
-        savedThis = this
-        return
-      }
-
-      func.apply(this, args)
-
-      inThrottle = true
-
-      setTimeout(() => {
-        inThrottle = false
-
-        if (savedArgs) {
-          warper.apply(savedThis, savedArgs)
-          savedThis = null
-          savedArgs = savedThis
-        }
-      }, limit)
-    }
-    return warper
-  } */
+  const throttlingSearch = _.throttle(searchByName, 300);
 
   const handleSearch = ({ target: { value } }) => {
-    setSearchValue(value)
-    throttling()
-  }
+    setSearchValue(value);
+    throttlingSearch();
+  };
+
+  const toggleFavoriteRender = () => {
+    setIsToggleFavorite(!isToggleFavorite);
+  };
+
+  const renderAllBooks = () =>
+    booksList.map((book) => <BookItem key={book.id} book={book} />);
+
+  const renderFavoriteBooks = () =>
+    booksList
+      .filter((book) => favoriteBooks.includes(book.id))
+      .map((book) => <BookItem key={book.id} book={book} />);
 
   return (
     <main className="books">
       <Carousel />
       <section className="searchBox">
+        <button
+          type="button"
+          className="favoriteToggleButton"
+          onClick={toggleFavoriteRender}>
+          {isToggleFavorite ? 'Show all' : 'Show only favorite'}
+        </button>
         <input
           type="text"
           placeholder="Search for books by Name"
@@ -81,9 +73,7 @@ const Books = ({
         />
       </section>
       <section className="booksList">
-        {booksList.map((book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
+        {isToggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
       </section>
       <div className="moreBooksButton">
         {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (
@@ -93,8 +83,8 @@ const Books = ({
         )}
       </div>
     </main>
-  )
-}
+  );
+};
 
 Books.propTypes = {
   getBooksList: PropTypes.func.isRequired,
@@ -102,16 +92,18 @@ Books.propTypes = {
   booksCount: PropTypes.number.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   setPageNum: PropTypes.func.isRequired,
-}
+  favoriteBooks: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 const mapStateToProps = ({ booksStore }) => ({
   booksList: booksStore.booksList,
   booksCount: booksStore.booksCount,
   searchValue: booksStore.searchValue,
-})
+  favoriteBooks: booksStore.favorite,
+});
 
 export default connect(mapStateToProps, {
   getBooksList,
   setSearchValue,
   setPageNum,
-})(Books)
+})(Books);
