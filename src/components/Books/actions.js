@@ -16,6 +16,7 @@ export const toggleFavorite = createAction('TOGGLE_FAVORITE');
 export const setGoodsCount = createAction('SET_GOODS_COUNT');
 export const setSelectedBook = createAction('SET_SELECTED_BOOK');
 export const setSearchValue = createAction('SET_SEARCH_VALUE');
+export const setCart = createAction('SET_CART');
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState();

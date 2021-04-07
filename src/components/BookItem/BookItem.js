@@ -15,6 +15,7 @@ import {
   isBookInFavoriteSelector,
 } from '../Books/selectors';
 import { toggleCart, toggleFavorite, setSelectedBook } from '../Books/actions';
+import { toggleItemInCart } from '../Cart/actions';
 import booksPropTypes from '../../propTypes/booksPropTypes';
 
 import './bookItem.css';
@@ -26,9 +27,14 @@ const BookItem = ({
   toggleCart,
   toggleFavorite,
   setSelectedBook,
+  toggleItemInCart,
 }) => {
   const { id, bookName, currencyMark, price, image, shortDescription } = book;
   const { url } = useRouteMatch();
+  const bookWithCount = {
+    ...book,
+    count: 1,
+  };
   const history = useHistory();
 
   const handleClickBook = () => {
@@ -39,6 +45,7 @@ const BookItem = ({
 
   const handleCart = () => {
     toggleCart(id);
+    toggleItemInCart(bookWithCount);
   };
 
   const handleFavorite = () => {
@@ -90,6 +97,7 @@ BookItem.propTypes = {
   isBookInFavorite: PropTypes.bool,
   isBookInCart: PropTypes.bool,
   setSelectedBook: PropTypes.func.isRequired,
+  toggleItemInCart: PropTypes.func.isRequired,
 };
 
 BookItem.defaultProps = {
@@ -106,4 +114,5 @@ export default connect(mapStateToProps, {
   toggleCart,
   toggleFavorite,
   setSelectedBook,
+  toggleItemInCart,
 })(BookItem);

@@ -1,4 +1,38 @@
 .cart {
   width: 100%;
-  margin: 100px 0px 0px 0px;
+  min-height: 100%;
+  padding-top: 120px;
+}
+
+.emptyCart {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.emptyCart span {
+  display: block;
+}
+
+.checkoutBox {
+  display: flex;
+  margin-top: 40px;
+  padding: 40px 150px 30px 40%;
+  width: 50%;
+  justify-content: space-between;
+  border-top: 2px solid lightgray;
+}
+
+.totalCheck {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.checkoutButton {
+  background-color: lightgray;
+  border: solid 2px rgb(97, 96, 96);
+  border-radius: 20px;
+  outline: none;
+  width: 40%;
+  text-align: center;
 }

@@ -52,6 +52,10 @@ const booksStore = handleActions(
       ...state,
       searchValue: action.payload,
     }),
+    [actions.setCart]: (state, action) => ({
+      ...state,
+      cart: action.payload,
+    }),
   },
   initialState
 );
