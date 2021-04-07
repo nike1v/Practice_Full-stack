@@ -8,7 +8,7 @@ import CartItem from '../CartItem/CartItem';
 import { setTotalCheck, setCartItemList } from './actions';
 import { setCart } from '../Books/actions';
 import { postData } from '../../api/HTTPSRequests';
-import { setCheckout } from '../../constants/serverUrl';
+import { setCheckoutUrl } from '../../constants/serverUrl';
 import { books } from '../../constants/routes';
 
 import './cart.css';
@@ -39,10 +39,10 @@ const Cart = ({
   };
 
   const handleCheckout = () => {
-    const checkList = cartItemList.map(({ id, count }) => ({
-      [id]: count,
+    const checkList = cartItemList.map((cartItem) => ({
+      [cartItem.id]: cartItem.count,
     }));
-    postData(setCheckout, checkList).then((response) => {
+    postData(setCheckoutUrl, checkList).then((response) => {
       if (response.status === 201 || response.ok) {
         setCartItemList([]);
         setCart([]);

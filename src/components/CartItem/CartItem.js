@@ -28,13 +28,17 @@ const CartItem = ({ cartItem, toggleItemInCart, toggleCart, setItemCount }) => {
   };
 
   const handleIncreaseItemCount = () => {
-    const payload = { count: count + 1, id: cartItem.id };
-    setItemCount(payload);
+    if (count < 10) {
+      const payload = { count: count + 1, id: cartItem.id };
+      setItemCount(payload);
+    }
   };
 
   const handleDecreaseItemCount = () => {
-    const payload = { count: count - 1, id: cartItem.id };
-    setItemCount(payload);
+    if (count > 1) {
+      const payload = { count: count - 1, id: cartItem.id };
+      setItemCount(payload);
+    }
   };
 
   return (

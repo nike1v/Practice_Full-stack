@@ -11,7 +11,7 @@ const categoryFilterParam = '&category=';
 
 export const getBook = (bookId) => `${BASE_ULR}${booksListUrl}/${bookId}`;
 export const getBooksCount = `${BASE_ULR}${booksCount}`;
-export const setCheckout = `${BASE_ULR}${checkout}`;
+export const setCheckoutUrl = `${BASE_ULR}${checkout}`;
 
 export const queryBuilderBooks = (pageNum, bookSearchValue, categoryFilter) => {
   let booksList = `${BASE_ULR}${booksListUrl}?${pageQueryParam}${pageNum}${limitQueryParam}${PAGE_LIMIT}`;
