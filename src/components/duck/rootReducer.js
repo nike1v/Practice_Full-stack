@@ -4,14 +4,22 @@ import storage from 'redux-persist/lib/storage';
 
 import booksStore from '../Books/reducer';
 import loaderStore from '../Spinner/reducer';
+import cartStore from '../Cart/reducer';
 
-const persistConfig = {
+const persistConfigBook = {
   key: 'bookList',
   storage,
   whitelist: ['cart', 'favorite'],
 };
 
+const persistConfigCart = {
+  key: 'cartList',
+  storage,
+  whitelist: ['cartItemList'],
+};
+
 export default combineReducers({
-  booksStore: persistReducer(persistConfig, booksStore),
+  booksStore: persistReducer(persistConfigBook, booksStore),
   loaderStore,
+  cartStore: persistReducer(persistConfigCart, cartStore),
 });

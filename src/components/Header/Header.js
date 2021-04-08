@@ -1,19 +1,33 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Logo from '../../images/logo.jpg';
-import { logout, contacts, cart as cartRoute } from '../../constants/routes';
+import {
+  logout,
+  contacts,
+  cart as cartRoute,
+  books,
+} from '../../constants/routes';
 
 import './header.css';
 
 const Header = ({ cart }) => {
+  const history = useHistory();
   const cartCount = cart.length;
+
+  const handleLogoClick = () => {
+    history.push(books);
+  };
 
   return (
     <header className="header">
-      <section className="logoName">
+      <section
+        className="logoName"
+        onClick={handleLogoClick}
+        role="button"
+        tabIndex="-10">
         <img src={Logo} width="50" alt="logo" />
         <span className="logoText">GetBooks</span>
       </section>
