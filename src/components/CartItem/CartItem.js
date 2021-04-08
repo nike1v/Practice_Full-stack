@@ -14,7 +14,6 @@ const CartItem = ({ cartItem, toggleItemInCart, toggleCart, setItemCount }) => {
     bookName,
     authorName,
     price,
-    /* currency, */
     currencyMark,
     image,
     shortDescription,

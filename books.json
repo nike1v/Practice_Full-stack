@@ -1201,7 +1201,14 @@
       "category": "horror"
     }
   ],
-  "checkout": [],
+  "checkout": [
+    {
+      "152144b3-55eb-47e9-b331-a01e5260c2f1": 2,
+      "77096420-42a6-4881-8116-4cabe9cc7b87": 2,
+      "950104ef-ed76-4a44-bb1d-93482a7a8589": 10,
+      "id": 1
+    }
+  ],
   "booksCount": {
     "count": 100
   }

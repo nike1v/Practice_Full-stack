@@ -29,14 +29,11 @@ export const putData = (url, body) =>
   );
 
 const parseResponse = async (response) => {
-  console.log(response);
   if (response.status === 200) {
     const data = await response.json();
-    /* console.log(data); */
     return data;
   }
   if (response.status === 201) {
-    /* console.log('POST Created'); */
     return response;
   }
   if (response.status === 401) {

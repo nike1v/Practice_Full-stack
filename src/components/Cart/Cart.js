@@ -39,9 +39,13 @@ const Cart = ({
   };
 
   const handleCheckout = () => {
-    const checkList = cartItemList.map((cartItem) => ({
-      [cartItem.id]: cartItem.count,
-    }));
+    const checkList = cartItemList.reduce(
+      (result, cartItem) => ({
+        [cartItem.id]: cartItem.count,
+        ...result,
+      }),
+      {}
+    );
     postData(setCheckoutUrl, checkList).then((response) => {
       if (response.status === 201 || response.ok) {
         setCartItemList([]);
