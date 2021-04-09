@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './input.css';
 
-const Input = ({ label, type, userValue, setUserState }) => {
+const Input = ({ label, type, value, onChange }) => {
   const handleChange = ({ target }) => {
-    setUserState(target.value);
+    onChange(target.value);
   };
   return (
     <label className="formLabel">
@@ -13,7 +13,7 @@ const Input = ({ label, type, userValue, setUserState }) => {
       <input
         type={type}
         className="formInput"
-        value={userValue}
+        value={value}
         onChange={handleChange}
         required
       />
@@ -24,9 +24,9 @@ const Input = ({ label, type, userValue, setUserState }) => {
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  userValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
     .isRequired,
-  setUserState: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Input;

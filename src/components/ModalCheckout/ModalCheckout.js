@@ -93,8 +93,8 @@ const ModalCheckout = ({
         <Input
           label="City: "
           type="text"
-          userValue={userCity}
-          setUserState={setUserCity}
+          value={userCity}
+          onChange={setUserCity}
         />
         <label className="formLabelAddress">
           Address:
@@ -122,8 +122,8 @@ const ModalCheckout = ({
         <Input
           label="Delivery date: "
           type="datetime-local"
-          userValue={userDeliveryDate}
-          setUserState={setUserDeliveryDate}
+          value={userDeliveryDate}
+          onChange={setUserDeliveryDate}
         />
         <button type="submit" className="modalSubmit">
           Submit
