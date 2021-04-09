@@ -1203,9 +1203,16 @@
   ],
   "checkout": [
     {
-      "152144b3-55eb-47e9-b331-a01e5260c2f1": 2,
-      "77096420-42a6-4881-8116-4cabe9cc7b87": 2,
-      "950104ef-ed76-4a44-bb1d-93482a7a8589": 10,
+      "City": "Kharkiv",
+      "Address": "53b Victory Ave, Quezon City, Metro Manila, Philippines",
+      "Phone": "0954569973",
+      "DeliveryDate": 1617979080000,
+      "orderedGoods": {
+        "152144b3-55eb-47e9-b331-a01e5260c2f1": 1,
+        "06d011f9-725a-402e-a09b-f8d118f5a781": 1,
+        "86b03934-28ff-4137-8f2d-742662c12664": 1,
+        "11a0bc34-1035-44df-bdfb-cd494c6b02dc": 1
+      },
       "id": 1
     }
   ],

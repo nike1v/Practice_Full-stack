@@ -1,0 +1,36 @@
+.checkoutForm {
+  padding: 20px 30px;
+}
+
+.modalTitle {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modalSubmit {
+  background-color: lightgray;
+  border: solid 2px rgb(97, 96, 96);
+  border-radius: 20px;
+  outline: none;
+  width: 40%;
+  margin: 20px auto 0px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.formLabelAddress {
+  display: block;
+  padding: 10px 0px;
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.formLabelAddress > div {
+  margin-top: 10px;
+}
+
+.formLabelAddress > div > div {
+  letter-spacing: 0.01rem;
+}

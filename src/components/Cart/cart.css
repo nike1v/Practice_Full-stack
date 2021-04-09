@@ -39,3 +39,8 @@
   width: 40%;
   text-align: center;
 }
+
+.checkoutLink {
+  text-decoration: none;
+  color: inherit;
+}

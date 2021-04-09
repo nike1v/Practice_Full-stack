@@ -1,29 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
 import cartPropType from '../../propTypes/cartPropTypes';
 import CartItem from '../CartItem/CartItem';
-import { setTotalCheck, setCartItemList } from './actions';
-import { setCart } from '../Books/actions';
-import { postData } from '../../api/HTTPSRequests';
-import { setCheckoutUrl } from '../../constants/serverUrl';
-import { books } from '../../constants/routes';
+import { setTotalCheck } from './actions';
+import { cart, modalCheckout } from '../../constants/routes';
+import ModalCheckout from '../ModalCheckout/ModalCheckout';
 
 import './cart.css';
 
-const Cart = ({
-  cartItemList,
-  setTotalCheck,
-  total,
-  setCartItemList,
-  setCart,
-}) => {
-  const history = useHistory();
+const Cart = ({ cartItemList, setTotalCheck, total }) => {
   useEffect(() => {
     cartCheck();
   }, [cartItemList]);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      history.push(cart);
+    }
+  }, []);
+
+  const location = useLocation();
+  const history = useHistory();
+  const [isModalOpen, setModalIsOpen] = useState(false);
 
   const renderCartItems = () =>
     cartItemList.map((cartItem) => (
@@ -39,24 +40,16 @@ const Cart = ({
   };
 
   const handleCheckout = () => {
-    const checkList = cartItemList.reduce(
-      (result, cartItem) => ({
-        [cartItem.id]: cartItem.count,
-        ...result,
-      }),
-      {}
-    );
-    postData(setCheckoutUrl, checkList).then((response) => {
-      if (response.status === 201 || response.ok) {
-        setCartItemList([]);
-        setCart([]);
-        history.push(books);
-      }
-    });
+    setModalIsOpen(true);
   };
 
   return (
     <main className="cart">
+      <ModalCheckout
+        isModalOpen={isModalOpen}
+        setModalIsOpen={setModalIsOpen}
+        cartItemList={cartItemList}
+      />
       {cartItemList.length ? (
         renderCartItems()
       ) : (
@@ -65,13 +58,20 @@ const Cart = ({
         </div>
       )}
       <section className="checkoutBox">
-        <button
-          type="button"
-          className="checkoutButton"
-          onClick={handleCheckout}
-          disabled={!cartItemList.length}>
-          Checkout
-        </button>
+        <Link
+          className="checkoutLink"
+          to={{
+            pathname: modalCheckout,
+            state: { background: location },
+          }}>
+          <button
+            type="button"
+            className="checkoutButton"
+            onClick={handleCheckout}
+            disabled={!cartItemList.length}>
+            Checkout
+          </button>
+        </Link>
         <div className="totalCheck">Total: {total}$</div>
       </section>
     </main>
@@ -82,8 +82,6 @@ Cart.propTypes = {
   cartItemList: PropTypes.arrayOf(cartPropType).isRequired,
   setTotalCheck: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
-  setCartItemList: PropTypes.func.isRequired,
-  setCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ cartStore: { cartItemList, total } }) => ({
@@ -93,6 +91,4 @@ const mapStateToProps = ({ cartStore: { cartItemList, total } }) => ({
 
 export default connect(mapStateToProps, {
   setTotalCheck,
-  setCartItemList,
-  setCart,
 })(Cart);
