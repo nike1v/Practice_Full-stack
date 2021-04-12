@@ -56,3 +56,23 @@
     padding: 0px 100px;
   }
 }
+
+.filterCheckbox {
+  position: fixed;
+  top: 45%;
+  padding-left: 10px;
+}
+
+.filterCheckbox span {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.filterButton {
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  display: block;
+  outline: none;
+}

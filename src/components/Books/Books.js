@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import BookItem from '../BookItem/BookItem';
-import { getBooksList, setSearchValue, setPageNum } from './actions';
+import {
+  getBooksList,
+  setSearchValue,
+  setPageNum,
+  setCategoryToFilter,
+  setEmptyFilter,
+} from './actions';
 import Carousel from '../Carousel/Carousel';
 import { PAGE_LIMIT } from '../../constants/serverUrl';
 import booksPropTypes from '../../propTypes/booksPropTypes';
@@ -18,6 +24,10 @@ const Books = ({
   setSearchValue,
   setPageNum,
   favoriteBooks,
+  categories,
+  setCategoryToFilter,
+  filterCategory,
+  setEmptyFilter,
 }) => {
   const [isToggleFavorite, setIsToggleFavorite] = useState(false);
 
@@ -47,6 +57,19 @@ const Books = ({
     setIsToggleFavorite(!isToggleFavorite);
   };
 
+  const toggleCategoryChange = ({ target }) => {
+    const filterCategory = target.id;
+    setPageNum(1);
+    setCategoryToFilter(filterCategory);
+    getBooksList();
+  };
+
+  const handleClearButton = () => {
+    setPageNum(1);
+    setEmptyFilter([]);
+    getBooksList();
+  };
+
   const renderAllBooks = () =>
     booksList.map((book) => <BookItem key={book.id} book={book} />);
 
@@ -72,6 +95,26 @@ const Books = ({
           onChange={handleSearch}
         />
       </section>
+      <section className="filterCheckbox">
+        Choose category<span>to filter:</span>
+        <input
+          type="button"
+          className="filterButton"
+          value="Clear all"
+          onClick={handleClearButton}
+        />
+        {categories.map((category) => (
+          <label key={category} className="checkbox">
+            <input
+              type="checkbox"
+              id={category}
+              onChange={toggleCategoryChange}
+              checked={filterCategory.includes(category)}
+            />
+            {category}
+          </label>
+        ))}
+      </section>
       <section className="booksList">
         {isToggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
       </section>
@@ -93,6 +136,10 @@ Books.propTypes = {
   setSearchValue: PropTypes.func.isRequired,
   setPageNum: PropTypes.func.isRequired,
   favoriteBooks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setCategoryToFilter: PropTypes.func.isRequired,
+  filterCategory: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setEmptyFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ booksStore }) => ({
@@ -100,10 +147,14 @@ const mapStateToProps = ({ booksStore }) => ({
   booksCount: booksStore.booksCount,
   searchValue: booksStore.searchValue,
   favoriteBooks: booksStore.favorite,
+  categories: booksStore.categories,
+  filterCategory: booksStore.filterCategory,
 });
 
 export default connect(mapStateToProps, {
   getBooksList,
   setSearchValue,
   setPageNum,
+  setCategoryToFilter,
+  setEmptyFilter,
 })(Books);
