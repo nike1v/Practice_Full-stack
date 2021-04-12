@@ -10,14 +10,14 @@
 }
 
 .modalSubmit {
-  background-color: lightgray;
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  margin: 20px auto 0px auto;
   border: solid 2px rgb(97, 96, 96);
   border-radius: 20px;
+  background-color: lightgray;
   outline: none;
-  width: 40%;
-  margin: 20px auto 0px auto;
-  display: flex;
-  justify-content: center;
 }
 
 .formLabelAddress {

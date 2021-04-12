@@ -8,9 +8,9 @@
   }
 
   .favBook {
+    border: none;
     margin: 0px 5px;
     background-color: transparent;
-    border: none;
     outline: none;
   }
 
@@ -19,16 +19,16 @@
   }
 
   .shareBook {
+    border: none;
     margin: 0px 5px;
     background-color: transparent;
-    border: none;
     outline: none;
   }
 
   .buyBook {
+    border: none;
     margin: 0px 5px;
     background-color: transparent;
-    border: none;
     outline: none;
   }
 
@@ -59,16 +59,16 @@
 }
 
 .bookImg {
-  padding-top: 5px;
   width: 100%;
   height: 150px;
+  padding-top: 5px;
 }
 
 .bookDescription {
   margin-top: 10px;
   text-align: left;
-  font-size: 16px;
   padding-left: 20px;
+  font-size: 16px;
 }
 
 .bookValue {
@@ -79,7 +79,7 @@
 
 .bookActivities {
   display: flex;
-  padding: 10px 0px;
   justify-content: space-around;
   align-items: center;
+  padding: 10px 0px;
 }

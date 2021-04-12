@@ -1,35 +1,30 @@
 @media screen and (min-width: 1024px) {
   .cartItem {
     display: flex;
-    padding: 0px 100px;
     justify-content: space-between;
-    padding-top: 40px;
+    padding: 0px 100px;
   }
 
   .cartItemRemove {
-    background-color: lightgray;
+    width: 100%;
     border: solid 2px rgb(97, 96, 96);
     border-radius: 20px;
-    outline: none;
-    width: 100%;
+    background-color: lightgray;
     text-align: center;
+    outline: none;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .cartItem {
-    display: flex;
     padding: 0px 150px;
-    justify-content: space-between;
     padding-top: 40px;
   }
 }
 
 @media screen and (min-width: 2560px) {
   .cartItem {
-    display: flex;
     padding: 0px 450px;
-    justify-content: space-between;
     padding-top: 40px;
   }
 }
@@ -42,15 +37,15 @@
 }
 
 .cartItemText {
-  padding: 10px 20px 0px 20px;
   width: 50%;
+  padding: 10px 20px 0px 20px;
 }
 
 .cartItemTitle {
+  padding-bottom: 20px;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 20px;
-  padding-bottom: 20px;
 }
 
 .cartItemDescription {
@@ -80,6 +75,6 @@
   background-color: transparent;
   border: solid 2px rgb(97, 96, 96);
   border-radius: 20px;
-  outline: none;
   text-align: center;
+  outline: none;
 }

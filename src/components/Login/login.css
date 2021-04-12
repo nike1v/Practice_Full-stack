@@ -1,10 +1,10 @@
 .login {
+  border-radius: 15px;
   width: 30%;
   min-height: 250px;
   max-height: 350px;
-  background-color: rgb(235, 235, 235);
   margin: 150px auto 0px auto;
-  border-radius: 15px;
+  background-color: rgb(235, 235, 235);
 }
 
 .loginFormLabel {
@@ -30,16 +30,16 @@
   text-align: center;
 }
 .loginForm > input {
-  text-align: left;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+  text-align: left;
 }
 .error {
   width: 100%;
-  font-size: 16px;
-  color: #900;
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin-bottom: 5px;
+  background-color: rgb(255, 255, 255);
+  color: #900;
+  font-size: 16px;
 }

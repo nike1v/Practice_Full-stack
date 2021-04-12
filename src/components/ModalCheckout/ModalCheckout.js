@@ -79,7 +79,11 @@ const ModalCheckout = ({
   };
 
   const handlePhoneChange = (event) => {
-    setUserPhone(event);
+    let userValue = event.trim();
+    if (!userValue) {
+      userValue = 'empty';
+    }
+    setUserPhone(userValue);
   };
 
   return (

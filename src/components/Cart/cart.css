@@ -15,9 +15,9 @@
 }
 
 .checkoutBox {
-  padding: 20px 100px;
-  margin-top: 40px;
   border-top: 2px solid lightgray;
+  margin-top: 40px;
+  padding: 20px 100px;
   text-align: center;
 }
 
@@ -26,18 +26,18 @@
 }
 
 .totalCheck {
+  display: inline;
   font-weight: 600;
   font-size: 22px;
-  display: inline;
 }
 
 .checkoutButton {
-  background-color: lightgray;
+  width: 40%;
   border: solid 2px rgb(97, 96, 96);
   border-radius: 20px;
-  outline: none;
-  width: 40%;
+  background-color: lightgray;
   text-align: center;
+  outline: none;
 }
 
 .checkoutLink {
