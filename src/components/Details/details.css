@@ -7,20 +7,20 @@
 }
 
 .backButton {
+  width: 8%;
+  border: 1px solid;
+  border-radius: 15px;
   margin: 0px 5px;
   padding: 7px;
   background-color: gainsboro;
-  border: 1px solid;
-  border-radius: 15px;
-  outline: none;
   font-size: 17px;
   font-weight: 500;
-  width: 8%;
+  outline: none;
 }
 
 .bookDetails {
-  padding: 15px 5px;
   display: flex;
+  padding: 15px 5px;
 }
 
 .bookImage {
@@ -29,8 +29,8 @@
 }
 
 .bookContent {
-  padding: 10px 0px;
   width: 50%;
+  padding: 10px 0px;
 }
 
 .bookDetailedTitle {
@@ -42,31 +42,25 @@
 }
 
 .bookDetailedDescription {
+  height: 60%;
   padding: 20px 0px;
   font-size: 18px;
   font-weight: 500;
   text-transform: capitalize;
-  height: 60%;
 }
 
 .bookButtons {
   display: flex;
 }
 
-.favBook {
-  padding: 0px 10px;
-}
-
-.shareBook {
-  padding: 0px 10px;
-}
-
+.shareBook,
+.favBook,
 .buyBook {
   padding: 0px 10px;
 }
 
 .bookPrice {
-  padding-right: 20px;
   width: 70%;
+  padding-right: 20px;
   text-align: right;
 }
