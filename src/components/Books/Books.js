@@ -37,8 +37,18 @@ const Books = ({
     if (!booksList.length) {
       getBooksList();
     }
-    setIsFetching(false);
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isFetching) {
+      getNextPage();
+    }
+  }, [isFetching]);
 
   /* useEffect(() => {
     const options = {
@@ -52,6 +62,7 @@ const Books = ({
 
   const getNextPage = () => {
     getBooksList();
+    setIsFetching(false);
   };
 
   const searchByName = () => {
@@ -95,10 +106,17 @@ const Books = ({
       .filter((book) => favoriteBooks.includes(book.id))
       .map((book) => <BookItem key={book.id} book={book} />);
 
-  const handleScroll = () => {};
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.scrollingElement.scrollHeight
+    ) {
+      setIsFetching(true);
+    }
+  };
 
   return (
-    <main className="books" onScroll={handleScroll}>
+    <main className="books">
       <Carousel />
       <section className="searchBox">
         <button
