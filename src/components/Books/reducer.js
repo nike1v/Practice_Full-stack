@@ -10,6 +10,8 @@ const initialState = {
   favorite: [],
   selectedBook: null,
   searchValue: '',
+  categories: [],
+  filterCategory: [],
 };
 
 const idToggler = (toggleId, state) => {
@@ -20,13 +22,24 @@ const idToggler = (toggleId, state) => {
   return [...state, toggleId];
 };
 
+const categoryToggler = (category, state) => {
+  const selectedCategory = state.find(
+    (filterCategory) => filterCategory === category
+  );
+  if (selectedCategory) {
+    return state.filter((filterCategory) => filterCategory !== category);
+  }
+  return [...state, category];
+};
+
 const booksStore = handleActions(
   {
     [actions.setBooksList]: (state, action) => ({
       ...state,
-      booksList: state.searchValue
-        ? [...action.payload]
-        : [...state.booksList, ...action.payload],
+      booksList:
+        state.searchValue || state.filterCategory.length
+          ? [...action.payload]
+          : [...state.booksList, ...action.payload],
     }),
     [actions.setPageNum]: (state, action) => ({
       ...state,
@@ -55,6 +68,18 @@ const booksStore = handleActions(
     [actions.setCart]: (state, action) => ({
       ...state,
       cart: action.payload,
+    }),
+    [actions.setCategories]: (state, action) => ({
+      ...state,
+      categories: action.payload,
+    }),
+    [actions.setCategoryToFilter]: (state, action) => ({
+      ...state,
+      filterCategory: categoryToggler(action.payload, state.filterCategory),
+    }),
+    [actions.setEmptyFilter]: (state) => ({
+      ...state,
+      filterCategory: [],
     }),
   },
   initialState

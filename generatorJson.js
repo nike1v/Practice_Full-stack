@@ -10,6 +10,7 @@ program.option('-n, --number [number]', 'add number to generate');
 program.parse(process.argv);
 const options = program.opts();
 const numberOfGoods = options.number;
+const categories = ['Art', 'Comics', 'History', 'Horrors', 'Kids', 'Medical', 'Science', 'Tech', 'Travel', 'Western'];
 
 if(numberOfGoods) {
   const goodsGenerator = () => {
@@ -17,6 +18,7 @@ if(numberOfGoods) {
       books: [],
       checkout: [],
       booksCount: {},
+      booksCategories: categories,
     };
     for (let i = 0; i < numberOfGoods; i++) {
         let generatedObject = {
@@ -29,7 +31,7 @@ if(numberOfGoods) {
           image: coolImages.one(160, 260),
           shortDescription: namor.generate({words: 2}),
           longDescription: namor.generate({words: 4}),
-          category: "horror",
+          category: categories[Math.floor(Math.random() * categories.length)],
         }
         result.books.push(generatedObject);
     }

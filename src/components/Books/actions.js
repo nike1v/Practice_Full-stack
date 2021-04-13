@@ -5,6 +5,7 @@ import {
   queryBuilderBooks,
   getBooksCount,
   getBook,
+  getCategories,
 } from '../../constants/serverUrl';
 import { toggleLoader } from '../Spinner/actions';
 import { getData } from '../../api/HTTPSRequests';
@@ -17,20 +18,30 @@ export const setGoodsCount = createAction('SET_GOODS_COUNT');
 export const setSelectedBook = createAction('SET_SELECTED_BOOK');
 export const setSearchValue = createAction('SET_SEARCH_VALUE');
 export const setCart = createAction('SET_CART');
+export const setCategories = createAction('SET_CATEGORIES');
+export const setCategoryToFilter = createAction('SET_CATEGORY_TO_FILTER');
+export const setEmptyFilter = createAction('SET_EMPTY_FILTER');
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState();
   const {
     pageNum: currentPageNumber,
     booksCount: goodsNumber,
+    categories,
     searchValue,
+    filterCategory,
   } = state.booksStore;
 
   try {
     dispatch(toggleLoader(true));
     const booksList = await getData(
-      queryBuilderBooks(currentPageNumber, searchValue)
+      queryBuilderBooks(currentPageNumber, searchValue, filterCategory)
     );
+
+    if (!categories.length) {
+      const booksCategoriesList = await getData(getCategories);
+      dispatch(setCategories(booksCategoriesList));
+    }
 
     if (!goodsNumber) {
       const fullBooksList = await getData(getBooksCount);
