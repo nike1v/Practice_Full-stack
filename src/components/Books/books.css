@@ -76,3 +76,11 @@
   display: block;
   outline: none;
 }
+
+.infiniteToggler {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  margin-right: 10px;
+  outline: none;
+}

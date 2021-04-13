@@ -30,12 +30,25 @@ const Books = ({
   setEmptyFilter,
 }) => {
   const [isToggleFavorite, setIsToggleFavorite] = useState(false);
+  const [isInfiniteScroll, setIsInfiniteScroll] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     if (!booksList.length) {
       getBooksList();
     }
+    setIsFetching(false);
   }, []);
+
+  /* useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.25,
+    };
+
+    const observer = new IntersectionObserver(getBooksList(), options);
+  }); */
 
   const getNextPage = () => {
     getBooksList();
@@ -53,6 +66,16 @@ const Books = ({
     throttlingSearch();
   };
 
+  const handleClearButton = () => {
+    setPageNum(1);
+    setEmptyFilter([]);
+    getBooksList();
+  };
+
+  const handleInfiniteScroll = () => {
+    setIsInfiniteScroll(!isInfiniteScroll);
+  };
+
   const toggleFavoriteRender = () => {
     setIsToggleFavorite(!isToggleFavorite);
   };
@@ -64,12 +87,6 @@ const Books = ({
     getBooksList();
   };
 
-  const handleClearButton = () => {
-    setPageNum(1);
-    setEmptyFilter([]);
-    getBooksList();
-  };
-
   const renderAllBooks = () =>
     booksList.map((book) => <BookItem key={book.id} book={book} />);
 
@@ -78,8 +95,10 @@ const Books = ({
       .filter((book) => favoriteBooks.includes(book.id))
       .map((book) => <BookItem key={book.id} book={book} />);
 
+  const handleScroll = () => {};
+
   return (
-    <main className="books">
+    <main className="books" onScroll={handleScroll}>
       <Carousel />
       <section className="searchBox">
         <button
@@ -118,13 +137,23 @@ const Books = ({
       <section className="booksList">
         {isToggleFavorite ? renderFavoriteBooks() : renderAllBooks()}
       </section>
-      <div className="moreBooksButton">
-        {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (
-          <button type="button" onClick={getNextPage}>
-            Load more
-          </button>
-        )}
-      </div>
+      <button
+        type="button"
+        className="infiniteToggler"
+        onClick={handleInfiniteScroll}>
+        {isInfiniteScroll ? 'Infinite On' : 'Infinite OFF'}
+      </button>
+      {isInfiniteScroll ? (
+        <div className="moreBooksButton">
+          {booksList.length !== booksCount && booksList.length >= PAGE_LIMIT && (
+            <button type="button" onClick={getNextPage}>
+              Load more
+            </button>
+          )}
+        </div>
+      ) : (
+        isFetching ?? <div>Fetching more...</div>
+      )}
     </main>
   );
 };

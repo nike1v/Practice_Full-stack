@@ -37,7 +37,7 @@ const booksStore = handleActions(
     [actions.setBooksList]: (state, action) => ({
       ...state,
       booksList:
-        state.searchValue || state.filterCategory
+        state.searchValue || state.filterCategory.length
           ? [...action.payload]
           : [...state.booksList, ...action.payload],
     }),
