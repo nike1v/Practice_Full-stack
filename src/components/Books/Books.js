@@ -37,16 +37,13 @@ const Books = ({
     if (!booksList.length) {
       getBooksList();
     }
-  }, []);
-
-  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     if (isFetching) {
       getNextPage();
+      setIsFetching(false);
     }
   }, [isFetching]);
 
@@ -62,7 +59,6 @@ const Books = ({
 
   const getNextPage = () => {
     getBooksList();
-    setIsFetching(false);
   };
 
   const searchByName = () => {
@@ -159,7 +155,7 @@ const Books = ({
         type="button"
         className="infiniteToggler"
         onClick={handleInfiniteScroll}>
-        {isInfiniteScroll ? 'Infinite On' : 'Infinite OFF'}
+        {isInfiniteScroll ? 'Infinite Off' : 'Infinite On'}
       </button>
       {isInfiniteScroll ? (
         <div className="moreBooksButton">
