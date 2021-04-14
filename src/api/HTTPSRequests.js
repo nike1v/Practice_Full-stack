@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const request = (url, method, headers, body) =>
   fetch(url, {
     method,
@@ -37,10 +36,10 @@ const parseResponse = async (response) => {
     return response;
   }
   if (response.status === 401) {
-    console.log('401');
+    return response;
   }
   if (response.status === 301) {
-    console.log('301');
+    return response;
   }
   Promise.reject('Unhandled status');
 };

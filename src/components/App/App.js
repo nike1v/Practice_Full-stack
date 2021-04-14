@@ -5,6 +5,7 @@ import Routes from '../Routes/Routes';
 import Layout from '../Layout/Layout';
 import ErrorBoundary from '../Errors/error';
 import Spinner from '../Spinner/Spinner';
+import ErrorToast from '../ErrorToast/ErrorToast';
 
 import 'normalize.css';
 import './app.css';
@@ -16,6 +17,7 @@ const App = () => (
         <Spinner />
         <Routes />
       </Layout>
+      <ErrorToast />
     </ErrorBoundary>
   </Router>
 );

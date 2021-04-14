@@ -47,16 +47,6 @@ const Books = ({
     }
   }, [isFetching]);
 
-  /* useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.25,
-    };
-
-    const observer = new IntersectionObserver(getBooksList(), options);
-  }); */
-
   const getNextPage = () => {
     getBooksList();
   };
@@ -104,7 +94,8 @@ const Books = ({
 
   const handleScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.clientHeight +
+        document.documentElement.scrollTop >=
       document.scrollingElement.scrollHeight
     ) {
       setIsFetching(true);
