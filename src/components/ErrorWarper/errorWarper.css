@@ -1,0 +1,9 @@
+.notificationWarper {
+  z-index: 100;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+}

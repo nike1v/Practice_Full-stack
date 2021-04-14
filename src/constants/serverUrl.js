@@ -20,8 +20,7 @@ export const queryBuilderBooks = (pageNum, bookSearchValue, categoryFilter) => {
 
   if (categoryFilter.length) {
     const filtrationByCategory = categoryFilter.reduce(
-      (result, category) => `&${categoryFilterParam}${category}${result}`,
-      ''
+      (result, category) => `&${categoryFilterParam}${category}${result}`
     );
     booksList = `${booksList}${filtrationByCategory}`;
   }

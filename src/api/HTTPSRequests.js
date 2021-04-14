@@ -1,3 +1,5 @@
+import { jsonServer } from '../constants/headers';
+
 const request = (url, method, headers, body) =>
   fetch(url, {
     method,
@@ -7,39 +9,14 @@ const request = (url, method, headers, body) =>
 
 export const getData = async (url) => await request(url);
 
-export const postData = (url, body) =>
-  request(
-    url,
-    'POST',
-    {
-      'Content-Type': 'application/json',
-    },
-    body
-  );
+export const postData = (url, body) => request(url, 'POST', jsonServer, body);
 
-export const putData = (url, body) =>
-  request(
-    url,
-    'PUT',
-    {
-      'Content-Type': 'application/json',
-    },
-    body
-  );
+export const putData = (url, body) => request(url, 'PUT', jsonServer, body);
 
 const parseResponse = async (response) => {
-  if (response.status === 200) {
+  if (response.ok) {
     const data = await response.json();
     return data;
   }
-  if (response.status === 201) {
-    return response;
-  }
-  if (response.status === 401) {
-    return response;
-  }
-  if (response.status === 301) {
-    return response;
-  }
-  Promise.reject('Unhandled status');
+  throw response;
 };

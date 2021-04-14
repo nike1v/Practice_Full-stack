@@ -6,12 +6,13 @@ import PhoneInput from 'react-phone-input-2';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 import { connect } from 'react-redux';
+import { v4 } from 'uuid';
 import Input from '../Input/Input';
 import { setCheckoutUrl } from '../../constants/serverUrl';
 import { postData } from '../../api/HTTPSRequests';
 import { books, cart } from '../../constants/routes';
 import cartPropType from '../../propTypes/cartPropTypes';
-import { setCart } from '../Books/actions';
+import { setCart, toggleToastInState } from '../Books/actions';
 import { setCartItemList } from '../Cart/actions';
 import { API_MAPS } from '../../constants/apiKeys';
 
@@ -24,6 +25,7 @@ const ModalCheckout = ({
   setCartItemList,
   setCart,
   cartItemList,
+  toggleToastInState,
 }) => {
   const date = new Date().getTimezoneOffset() * 60000;
   const today = new Date(Date.now() - date).toISOString().substr(0, 16);
@@ -70,10 +72,23 @@ const ModalCheckout = ({
       {}
     );
     postData(setCheckoutUrl, checkList).then((response) => {
-      if (response.status === 201 || response.ok) {
+      if (response) {
+        const successItem = {
+          id: v4(),
+          toastText: 'Your check completed!',
+          type: 'success',
+        };
+        toggleToastInState(successItem);
         setCartItemList([]);
         setCart([]);
         history.push(books);
+      } else {
+        const errorItem = {
+          id: v4(),
+          toastText: "Your check doesn't sent!",
+          type: 'error',
+        };
+        toggleToastInState(errorItem);
       }
     });
   };
@@ -143,6 +158,9 @@ ModalCheckout.propTypes = {
   setCartItemList: PropTypes.func.isRequired,
   setCart: PropTypes.func.isRequired,
   cartItemList: PropTypes.arrayOf(cartPropType).isRequired,
+  toggleToastInState: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setCartItemList, setCart })(ModalCheckout);
+export default connect(null, { setCartItemList, setCart, toggleToastInState })(
+  ModalCheckout
+);

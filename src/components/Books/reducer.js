@@ -12,6 +12,7 @@ const initialState = {
   searchValue: '',
   categories: [],
   filterCategory: [],
+  toastHandlingList: [],
 };
 
 const idToggler = (toggleId, state) => {
@@ -30,6 +31,14 @@ const categoryToggler = (category, state) => {
     return state.filter((filterCategory) => filterCategory !== category);
   }
   return [...state, category];
+};
+
+const errorToggler = (toastItem, state) => {
+  const errorToDelete = state.find(({ id }) => id === toastItem.id);
+  if (errorToDelete) {
+    return state.filter(({ id }) => id !== toastItem.id);
+  }
+  return [...state, toastItem];
 };
 
 const booksStore = handleActions(
@@ -80,6 +89,10 @@ const booksStore = handleActions(
     [actions.setEmptyFilter]: (state) => ({
       ...state,
       filterCategory: [],
+    }),
+    [actions.toggleToastInState]: (state, action) => ({
+      ...state,
+      toastHandlingList: errorToggler(action.payload, state.toastHandlingList),
     }),
   },
   initialState
