@@ -37,18 +37,15 @@ const Books = ({
     if (!booksList.length) {
       getBooksList();
     }
-    setIsFetching(false);
+    window.addEventListener('scroll', handleScroll);
   }, []);
 
-  /* useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.25,
-    };
-
-    const observer = new IntersectionObserver(getBooksList(), options);
-  }); */
+  useEffect(() => {
+    if (isFetching) {
+      getNextPage();
+      setIsFetching(false);
+    }
+  }, [isFetching]);
 
   const getNextPage = () => {
     getBooksList();
@@ -95,10 +92,18 @@ const Books = ({
       .filter((book) => favoriteBooks.includes(book.id))
       .map((book) => <BookItem key={book.id} book={book} />);
 
-  const handleScroll = () => {};
+  const handleScroll = () => {
+    if (
+      document.documentElement.clientHeight +
+        document.documentElement.scrollTop >=
+      document.scrollingElement.scrollHeight
+    ) {
+      setIsFetching(true);
+    }
+  };
 
   return (
-    <main className="books" onScroll={handleScroll}>
+    <main className="books">
       <Carousel />
       <section className="searchBox">
         <button
@@ -141,7 +146,7 @@ const Books = ({
         type="button"
         className="infiniteToggler"
         onClick={handleInfiniteScroll}>
-        {isInfiniteScroll ? 'Infinite On' : 'Infinite OFF'}
+        {isInfiniteScroll ? 'Infinite Off' : 'Infinite On'}
       </button>
       {isInfiniteScroll ? (
         <div className="moreBooksButton">
