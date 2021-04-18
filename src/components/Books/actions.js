@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
 import { createAction } from 'redux-actions';
 
+import { v4 } from 'uuid';
 import {
   queryBuilderBooks,
   getBooksCount,
@@ -21,6 +21,7 @@ export const setCart = createAction('SET_CART');
 export const setCategories = createAction('SET_CATEGORIES');
 export const setCategoryToFilter = createAction('SET_CATEGORY_TO_FILTER');
 export const setEmptyFilter = createAction('SET_EMPTY_FILTER');
+export const toggleToastInState = createAction('TOGGLE_ERROR_IN_STATE');
 
 export const getBooksList = () => async (dispatch, getState) => {
   const state = getState();
@@ -51,8 +52,13 @@ export const getBooksList = () => async (dispatch, getState) => {
 
     dispatch(setBooksList(booksList));
     dispatch(setPageNum(currentPageNumber + 1));
-  } catch (error) {
-    console.error(error);
+  } catch {
+    const errorItem = {
+      id: v4(),
+      toastText: "Can't get books",
+      type: 'error',
+    };
+    dispatch(toggleToastInState(errorItem));
   } finally {
     dispatch(toggleLoader(false));
   }
@@ -63,8 +69,13 @@ export const getBookById = (bookId) => async (dispatch) => {
     dispatch(toggleLoader(true));
     const bookById = await getData(getBook(bookId));
     dispatch(setSelectedBook(bookById));
-  } catch (error) {
-    console.error(error);
+  } catch {
+    const errorItem = {
+      id: v4(),
+      toastText: "Can't get book",
+      type: 'error',
+    };
+    dispatch(toggleToastInState(errorItem));
   } finally {
     dispatch(toggleLoader(false));
   }

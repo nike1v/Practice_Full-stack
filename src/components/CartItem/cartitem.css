@@ -2,7 +2,7 @@
   .cartItem {
     display: flex;
     justify-content: space-between;
-    padding: 0px 100px;
+    padding: 10px 100px;
   }
 
   .cartItemRemove {
